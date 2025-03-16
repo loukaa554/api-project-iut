@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Générateur de Recettes</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🍽️ Générateur de Recettes 🍽️</h1>
+      <button id="randomRecipe">Recette Aléatoire</button>
+      <input
+        type="text"
+        id="ingredientInput"
+        placeholder="Rechercher par ingrédient"
+      />
+      <button id="searchRecipe">Rechercher</button>
+      <div id="recipeContainer"></div>
+    </div>
+
+    <script>
+      document
+        .getElementById("randomRecipe")
+        .addEventListener("click", getRandomRecipe);
+      document
+        .getElementById("searchRecipe")
+        .addEventListener("click", searchRecipe);
+
+      function getRandomRecipe() {
+        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+          .then((response) => response.json())
+          .then((data) => displayRecipe(data.meals[0]));
+      }
+
+      function searchRecipe() {
+        const ingredient = document
+          .getElementById("ingredientInput")
+          .value.trim();
+        if (!ingredient) return;
+        fetch(
+          `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.meals) {
+              const firstMealId = data.meals[0].idMeal;
+              fetch(
+                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${firstMealId}`
+              )
+                .then((response) => response.json())
+                .then((data) => displayRecipe(data.meals[0]));
+            } else {
+              document.getElementById("recipeContainer").innerHTML =
+                "<p>Aucune recette trouvée.</p>";
+            }
+          });
+      }
+
+      function displayRecipe(meal) {
+        document.getElementById("recipeContainer").innerHTML = `
+                <h2>${meal.strMeal}</h2>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width: 100%;">
+                <p><strong>Catégorie:</strong> ${meal.strCategory}</p>
+                <p><strong>Origine:</strong> ${meal.strArea}</p>
+                <p>${meal.strInstructions}</p>
+            `;
+      }
+    </script>
+  </body>
+</html>
