@@ -1,6 +1,7 @@
 import { areas, categories, ingredients } from "../controller/init.js";
 import { view } from "../view/view.js";
 import { getFlagEmoji } from "../function/flags.js";
+import { getCatString } from "../function/catString.js";
 
 let recipes;
 
@@ -15,6 +16,9 @@ const searchRecipes = async (ingredient) => {
   recipes = data.meals;
   view.displayRecipes(recipes);
 };
+
+let selectedIndex = -1; // Index de l'élément sélectionné
+
 view.search.addEventListener("input", async (e) => {
   const searchValue = e.target.value.toLowerCase().trim();
 
@@ -25,7 +29,7 @@ view.search.addEventListener("input", async (e) => {
 
   view.suggestions.style.display = "block";
 
-  // Icône par défaut pour les éléments sans image (catégories et pays)
+  // Icône par défaut pour les éléments sans image
   const defaultIcon = `
     <svg stroke="currentColor" fill="currentColor" stroke-width="0"
         viewBox="0 0 24 24" height="200px" width="200px"
@@ -45,11 +49,13 @@ view.search.addEventListener("input", async (e) => {
       return `https://www.themealdb.com/images/ingredients/${item
         .getName()
         .toLowerCase()}-small.png`;
+    } else if (type === "meal") {
+      return item.image || null;
     }
-    return null; // Pas d'image pour catégories et pays
+    return null;
   };
 
-  // Fusionner tous les résultats en une seule liste
+  // Fusionner ingrédients, catégories, pays et recettes
   let allResults = [
     ...ingredients.map((i) => ({
       name: i.getName(),
@@ -59,10 +65,30 @@ view.search.addEventListener("input", async (e) => {
     ...categories.map((c) => ({
       name: c.getName(),
       type: "category",
-      image: null,
-    })), // Pas d'image pour catégories
-    ...areas.map((a) => ({ name: a.getName(), type: "area", image: null })), // Pas d'image pour pays
+      image: c.getImage(),
+    })),
+    ...areas.map((a) => ({ name: a.getName(), type: "area", image: null })),
   ];
+
+  // Recherche des recettes en direct depuis l'API
+  try {
+    const recipeResponse = await fetch(
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`
+    );
+    const recipeData = await recipeResponse.json();
+
+    if (recipeData.meals) {
+      allResults.push(
+        ...recipeData.meals.map((meal) => ({
+          name: meal.strMeal,
+          type: "meal",
+          image: meal.strMealThumb,
+        }))
+      );
+    }
+  } catch (error) {
+    console.error("Erreur lors de la recherche des recettes :", error);
+  }
 
   // Filtrer les résultats en fonction de la recherche
   allResults = allResults.filter((item) =>
@@ -81,9 +107,12 @@ view.search.addEventListener("input", async (e) => {
 
   // Premier élément : "Rechercher [mot]"
   view.suggestions.innerHTML = `
-    <div class="item">
-      ${defaultIcon}
-      <span id="firstSuggestion">Rechercher "${e.target.value}"</span>
+    <div class="item" data-url="/search?q=${searchValue}">
+      <div class="left">
+        ${defaultIcon}
+        <span id="firstSuggestion">Rechercher "${e.target.value}"</span>
+      </div>
+      <i>Tous les résultats</i>
     </div>
   `;
 
@@ -91,17 +120,51 @@ view.search.addEventListener("input", async (e) => {
   view.suggestions.innerHTML += allResults
     .map(
       (item) => `
-      <div class="item item-suggest">
-        ${
-          item.image
-            ? `<img src="${item.image}" alt="${item.name}" loading="lazy"/>`
-            : item.type === "area"
-            ? `<div class="icon">${getFlagEmoji(item.name)}</div>`
-            : defaultIcon
-        }
-        ${item.name}
+      <div class="item item-suggest" data-url="/${item.name}">
+        <div class="left">
+          ${
+            item.image
+              ? `<img src="${item.image}" alt="${item.name}" loading="lazy"/>`
+              : defaultIcon
+          }
+          ${item.name}
+        </div>
+        <i class="right">${getCatString(item.type)}</i>
       </div>
     `
     )
     .join("");
+
+  // Réinitialiser l'index de sélection
+  selectedIndex = -1;
+});
+
+// Gestion de la navigation au clavier
+view.search.addEventListener("keydown", (e) => {
+  const items = document.querySelectorAll(".item");
+
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    if (selectedIndex < items.length - 1) {
+      selectedIndex++;
+    }
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    if (selectedIndex > -1) {
+      selectedIndex--;
+    }
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    if (selectedIndex >= 0 && items[selectedIndex]) {
+      window.location.href = items[selectedIndex].dataset.url;
+    } else {
+      // Si "Rechercher [mot]" est sélectionné, redirige vers /search?q=[mot]
+      window.location.href = `/search?q=${view.search.value}`;
+    }
+  }
+
+  // Mettre à jour l'affichage des éléments sélectionnés
+  items.forEach((item, index) => {
+    item.classList.toggle("selected", index === selectedIndex);
+  });
 });

@@ -45,10 +45,34 @@ h1 {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 5px 10px;
 }
 .search .suggestions .item:hover {
   background-color: var(--c-gray-bg);
+}
+.search .suggestions .item.selected {
+  background-color: var(--c-gray-bg);
+}
+.search .suggestions .item.selected::before {
+  content: "";
+  position: absolute;
+  height: 50px;
+  width: 3px;
+  transform: translateX(-10px);
+  background-color: var(--c-default);
+  border-top-right-radius: var(--br-default);
+  border-bottom-right-radius: var(--br-default);
+}
+.search .suggestions .item:last-child.selected::before {
+  content: "";
+  position: absolute;
+  height: 40px;
+  width: 3px;
+  transform: translateX(-10px) translateY(-5px);
+  background-color: var(--c-default);
+  border-radius: 0px var(--br-default) 0px 30px / 0px var(--br-default) 0px
+    100px;
 }
 .search .suggestions .item img {
   width: 40px;
@@ -69,6 +93,14 @@ h1 {
   width: 20px;
   height: 20px;
   margin-right: 20px;
+}
+.search .suggestions .item .left {
+  display: flex;
+  align-items: center;
+}
+.search .suggestions .item i {
+  font-size: 15px;
+  color: var(--c-gray-text);
 }
 .search.suggest {
   border-radius: var(--br-default);
