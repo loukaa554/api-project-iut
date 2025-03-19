@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter } from "../function/str.js";
 import { recipeDetailView } from "../view/recipeDetailView.js";
 import { ingredients } from "./init.js";
 
@@ -22,12 +23,14 @@ const getRecipeDetails = async (id) => {
   ingredientsList = [];
   for (let i = 1; i <= 20; i++) {
     let ingredientName = meal[`strIngredient${i}`];
+    ingredientName = capitalizeFirstLetter(ingredientName);
     let measure = meal[`strMeasure${i}`];
 
     if (ingredientName && ingredientName.trim() !== "") {
-      let ingredient = ingredients.find(
-        (ing) => ing.getName() == ingredientName.trim()
-      );
+      console.log("Ingredients:", ingredients);
+      ingredients.filter((ing) => console.log(ing));
+      let ingredient = ingredients.find((ing) => console.log(ing));
+      console.log("IngredientName:", ingredientName);
       console.log("Ingredient:", ingredient);
       if (ingredient) {
         ingredientsList = [
@@ -35,7 +38,7 @@ const getRecipeDetails = async (id) => {
           {
             measure: measure ? measure.trim() : "",
             name: ingredient.getName(),
-            image: ingredient.getImage(),
+            image: ingredient.getMedium(),
           },
         ];
       } else {
@@ -65,7 +68,7 @@ const getRecipeDetails = async (id) => {
   recipeDetailView.ingredients.innerHTML = ingredientsList
     .map(
       (i) =>
-        `<li class="ingredient"><img src="${i.image}" alt="${i.name}"/></li>`
+        `<li class="ingredient"><img src="${i.image}" alt="${i.name}"/><div class="right"><p>${i.name}</p><p class="measure">${i.measure}</p></div></li>`
     )
     .join("");
   recipeDetailView.instructions.innerHTML = instructions
