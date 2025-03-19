@@ -19,11 +19,16 @@ const init = async () => {
 
     // Charger les catégories
     const categoriesResponse = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
     );
     const categoriesData = await categoriesResponse.json();
-    categories = categoriesData.meals.map(
-      (cat) => new modelCategorie(cat.strCategory)
+    categories = categoriesData.categories.map(
+      (cat) =>
+        new modelCategorie(
+          cat.strCategory,
+          cat.strCategoryDescription,
+          cat.strCategoryThumb
+        )
     );
 
     // Charger les pays

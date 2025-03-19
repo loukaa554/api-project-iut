@@ -13,11 +13,23 @@ export class IngredientModel {
   _url;
 
   /**
-   * Image de l'ingrédient.
+   * Image small de l'ingrédient.
    * @type {string}
    *
    */
-  _image;
+  _small;
+
+  /**
+   * Image medium de l'ingrédient.
+   * @type {string}
+   */
+  _medium;
+
+  /**
+   * Image large de l'ingrédient.
+   * @type {string}
+   */
+  _large;
 
   /**
    * Description de l'ingrédient.
@@ -30,10 +42,27 @@ export class IngredientModel {
    * @param {*} ingredient
    * @returns {Array} Liste des recettes
    */
-  constructor(name, url, image, description) {
+  constructor(name, small, medium, large, url, description) {
     this._name = name ?? "Ingrédient inconnu";
-    this._url = url ?? "";
-    this._image = image ?? "";
+    this.url = url ?? "";
+    this._small =
+      small ??
+      `https://www.themealdb.com/images/ingredients/${item
+        .getName()
+        .toLowerCase()}-small.png` ??
+      "";
+    this.medium =
+      medium ??
+      `https://www.themealdb.com/images/ingredients/${item
+        .getName()
+        .toLowerCase()}-medium.png` ??
+      "";
+    this.large =
+      large ??
+      `https://www.themealdb.com/images/ingredients/${item
+        .getName()
+        .toLowerCase()}-large.png` ??
+      "";
     this._description = description ?? "";
   }
 
@@ -57,8 +86,24 @@ export class IngredientModel {
    * Getter de l'attribut _image.
    * @returns {string} Image de l'ingrédient.
    */
-  getImage() {
-    return this._image;
+  getSmall() {
+    return this._small;
+  }
+
+  /**
+   * Getter de l'attribut _image.
+   * @returns {string} Image de l'ingrédient.
+   */
+  getMedium() {
+    return this._medium;
+  }
+
+  /**
+   * Getter de l'attribut _image.
+   * @returns {string} Image de l'ingrédient.
+   */
+  getLarge() {
+    return this._large;
   }
 
   /**
@@ -89,8 +134,24 @@ export class IngredientModel {
    * Setter de l'attribut _image.
    * @param {string} image Image de l'ingrédient.
    */
-  setImage(image) {
-    this._image = image;
+  setSmall(image) {
+    this._small = image;
+  }
+
+  /**
+   * Setter de l'attribut _image.
+   * @param {string} image Image de l'ingrédient.
+   */
+  setMedium(image) {
+    this._medium = image;
+  }
+
+  /**
+   * Setter de l'attribut _image.
+   * @param {string} image Image de l'ingrédient.
+   */
+  setLarge(image) {
+    this._large = image;
   }
 
   /**
