@@ -3,69 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Générateur de Recettes</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Recherche de Recettes</title>
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/root.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-    <div class="container">
-      <h1>🍽️ Générateur de Recettes 🍽️</h1>
-      <button id="randomRecipe">Recette Aléatoire</button>
-      <input
-        type="text"
-        id="ingredientInput"
-        placeholder="Rechercher par ingrédient"
-      />
-      <button id="searchRecipe">Rechercher</button>
-      <div id="recipeContainer"></div>
-    </div>
+  <body class="inner">
+    <nav>
+      <h3>
+        <a href="/">Reciply</a>
+      </h3>
+      <ul>
+        <li><a href="github.com">Github</a></li>
+        <li><a href="github.com">Documentation</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <h1>Le web de la cuisine</h1>
+    <form class="search suggest">
+      <div class="search-bar">
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="200px"
+          width="200px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z"
+          ></path>
+        </svg>
+        <input type="text" id="search" placeholder="Entrez un ingrédient" />
+      </div>
+      <div class="suggestions" id="suggestions"></div>
+    </form>
 
-    <script>
-      document
-        .getElementById("randomRecipe")
-        .addEventListener("click", getRandomRecipe);
-      document
-        .getElementById("searchRecipe")
-        .addEventListener("click", searchRecipe);
-
-      function getRandomRecipe() {
-        fetch("https://www.themealdb.com/api/json/v1/1/random.php")
-          .then((response) => response.json())
-          .then((data) => displayRecipe(data.meals[0]));
-      }
-
-      function searchRecipe() {
-        const ingredient = document
-          .getElementById("ingredientInput")
-          .value.trim();
-        if (!ingredient) return;
-        fetch(
-          `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.meals) {
-              const firstMealId = data.meals[0].idMeal;
-              fetch(
-                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${firstMealId}`
-              )
-                .then((response) => response.json())
-                .then((data) => displayRecipe(data.meals[0]));
-            } else {
-              document.getElementById("recipeContainer").innerHTML =
-                "<p>Aucune recette trouvée.</p>";
-            }
-          });
-      }
-
-      function displayRecipe(meal) {
-        document.getElementById("recipeContainer").innerHTML = `
-                <h2>${meal.strMeal}</h2>
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width: 100%;">
-                <p><strong>Catégorie:</strong> ${meal.strCategory}</p>
-                <p><strong>Origine:</strong> ${meal.strArea}</p>
-                <p>${meal.strInstructions}</p>
-            `;
-      }
-    </script>
+    <div class="recipes" id="recipes"></div>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>

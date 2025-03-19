@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+.search {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  border: var(--b-default);
+  border-radius: var(--br-button);
+}
+.search svg,
+.search .icon {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  border-radius: 50%;
+}
+.search .search-bar {
+  display: flex;
+  width: calc(100% - 20px);
+  padding: 3px 10px;
+}
+.search .search-bar input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
+.search .suggestions {
+  display: none;
+  width: calc(100%);
+  border-top: var(--b-default);
+}
+.search .suggestions .item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.search .suggestions .item:hover {
+  background-color: var(--c-gray-bg);
+}
+.search .suggestions .item img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.search .suggestions svg {
+  margin-right: 25px;
+  width: 15px;
+  height: 15px;
+}
+.search .suggestions .icon {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+.search.suggest {
+  border-radius: var(--br-default);
+}

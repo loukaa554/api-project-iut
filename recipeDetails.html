@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/root.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="./recipeDetails.css" />
+  </head>
+  <body class="inner">
+    <div class="nav">
+      <input type="text" id="ingredient" placeholder="Entrez un ingrédient" />
+      <button id="search" onclick="searchRecipes()">Rechercher</button>
+    </div>
+    <img id="recipeImage" src="null" alt="" />
+    <section id="middle">
+      <div id="resume">
+        <h1 id="recipeTitle">Titre de la recette</h1>
+        <p id="recipeDescription">Description de la recette</p>
+      </div>
+      <div>
+        <div class="flex-row" id="time">
+          <div class="left">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 256 256"
+              height="200px"
+              width="200px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M232,136.66A104.12,104.12,0,1,1,119.34,24,8,8,0,0,1,120.66,40,88.12,88.12,0,1,0,216,135.34,8,8,0,0,1,232,136.66ZM120,72v56a8,8,0,0,0,8,8h56a8,8,0,0,0,0-16H136V72a8,8,0,0,0-16,0Zm40-24a12,12,0,1,0-12-12A12,12,0,0,0,160,48Zm36,24a12,12,0,1,0-12-12A12,12,0,0,0,196,72Zm24,36a12,12,0,1,0-12-12A12,12,0,0,0,220,108Z"
+              ></path>
+            </svg>
+            <p>Cooking time:</p>
+          </div>
+          <div class="right">
+            <p id="cookingTime">Temps de cuisson</p>
+          </div>
+        </div>
+        <div class="flex-row" id="difficulty">
+          <div class="left">
+            <svg
+              stroke="currentColor"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              height="200px"
+              width="200px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 3c1.918 0 3.52 1.35 3.91 3.151a4 4 0 0 1 2.09 7.723l0 7.126h-12v-7.126a4 4 0 1 1 2.092 -7.723a4 4 0 0 1 3.908 -3.151z"
+              ></path>
+              <path d="M6.161 17.009l11.839 -.009"></path>
+            </svg>
+            <p>Difficulty:</p>
+          </div>
+          <div class="right">
+            <p id="recipeDifficulty">difficulty</p>
+          </div>
+        </div>
+        <div class="flex-row" id="Servings">
+          <div class="left">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 256 256"
+              height="200px"
+              width="200px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M72,88V40a8,8,0,0,1,16,0V88a8,8,0,0,1-16,0ZM216,40V224a8,8,0,0,1-16,0V176H152a8,8,0,0,1-8-8,268.75,268.75,0,0,1,7.22-56.88c9.78-40.49,28.32-67.63,53.63-78.47A8,8,0,0,1,216,40ZM200,53.9c-32.17,24.57-38.47,84.42-39.7,106.1H200ZM119.89,38.69a8,8,0,1,0-15.78,2.63L112,88.63a32,32,0,0,1-64,0l7.88-47.31a8,8,0,1,0-15.78-2.63l-8,48A8.17,8.17,0,0,0,32,88a48.07,48.07,0,0,0,40,47.32V224a8,8,0,0,0,16,0V135.32A48.07,48.07,0,0,0,128,88a8.17,8.17,0,0,0-.11-1.31Z"
+              ></path>
+            </svg>
+            <p>Servings:</p>
+          </div>
+          <div class="right">
+            <p id="nbPersonnes">Nombre de personnes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="bottom">
+      <div id="ingredients">
+        <h2>Ingredients</h2>
+        <ul id="ingredientsList"></ul>
+      </div>
+      <div id="steps">
+        <h2>Steps</h2>
+        <ol id="stepsList"></ol>
+      </div>
+    </section>
+  </body>
+</html>

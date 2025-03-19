@@ -1,0 +1,237 @@
+@import url("./nav.css");
+
+/* ============================= FONT-FACE ============================= */
+
+@font-face {
+  font-family: "Title";
+  src: url("../fonts/Evolventa-Bold.ttf");
+}
+@font-face {
+  font-family: "Text";
+  src: url("../fonts/Loukaaa-font-text.ttf");
+}
+
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+/* ===================================================================== */
+
+/* ============================= VAR ROOT ============================== */
+
+:root {
+  /* ----------------- FONT ----------------- */
+
+  --ff-default: "Text", sans-serif;
+  --ff-text: "Text", sans-serif;
+  --ff-title: "Title", sans-serif;
+
+  /* ----------------- WIDTH ---------------- */
+  --mw-default: 1100px;
+
+  /* ---------------------------------------- */
+
+  /* ----------------- COLOR ---------------- */
+
+  /* DEFAULT */
+  --c-default: #281ae4;
+  --c-default-hover: rgb(35, 26, 151);
+  --c-default-disabled: rgba(2, 99, 224, 0.9);
+  --c-default-bg: #e9ecff;
+
+  /* BG */
+  --c-bg-default: #ffffff;
+  --c-bg-secondary: #111;
+
+  /* TEXT */
+  --c-text: #040038;
+  --c-text-hover: black;
+  --c-text-inverted: white;
+
+  /* BLUE */
+  --c-blue: #1b60df;
+  --c-blue-hover: #1252c7;
+  --c-blue-disabled: #1252c7;
+  --c-blue-bg: #e0ebff;
+  --c-blue-border: rgba(35, 53, 114, 0.09);
+
+  /* GRAY */
+  --c-gray: #aeb2ba;
+  --c-gray-text: #656569;
+  --c-gray-hover: #e2e2e2;
+  --c-gray-disabled: #aeb2ba;
+  --c-gray-bg: #f7f7f7;
+  --c-gray-border: #363636;
+
+  /* RED */
+  --c-red: #c32626;
+  --c-red-hover: #c80923;
+  --c-red-disabled: #c11f35;
+  --c-red-bg: #feedee;
+  --c-red-border: rgba(114, 35, 35, 0.09);
+
+  /* GREEN */
+  --c-green: #38a169;
+  --c-green-hover: #2f8e5e;
+  --c-green-disabled: #2f8e5e;
+  --c-green-bg: #e6f4f1;
+  --c-green-border: rgb(35, 114, 72, 0.09);
+
+  /* YELLOW */
+  --c-yellow: #ffd94f;
+  --c-yellow-hover: #fddc9f;
+  --c-yellow-disabled: #fddc9f;
+  --c-yellow-bg: #fff8e8;
+  --c-yellow-border: rgb(238, 215, 169);
+
+  /* ORANGE */
+  --c-orange: #f6ad55;
+  --c-orange-hover: #f59e4f;
+  --c-orange-disabled: #f59e4f;
+  --c-orange-bg: #fff3e6;
+  --c-orange-border: rgb(238, 215, 169);
+
+  /* PINK */
+  --c-pink: #ea64d9;
+  --c-pink-hover: #de54cb;
+  --c-pink-disabled: #f464a9;
+  --c-pink-bg: #feeaf3;
+  --c-pink-border: rgb(238, 215, 169);
+
+  /* ---------------------------------------- */
+
+  /* ---------------- BORDER ---------------- */
+
+  --b-default: 1px solid #e4e8ee;
+  --b-secondary: 1px solid #e4e8ee;
+  --b-red: 1px solid #ecd1c9;
+  --b-blue: 1px solid #b6cdec;
+  --b-gray: 1px solid #d6d6d6;
+
+  /* ---------------------------------------- */
+
+  /* ------------- BORDER-RADIUS ------------ */
+
+  --br-default: 22px;
+  --br-button: 30px;
+  --br-input: 8px;
+  --br-large: 12px;
+  --br-small: 6px;
+
+  /* ---------------------------------------- */
+
+  /* -------------- BOX-SHADOW -------------- */
+
+  --bs-default: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --bs-button: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --bs-ctn: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+  /* ---------------------------------------- */
+
+  /* -------------- TRANSITION -------------- */
+
+  --tr-default: all 0.2s;
+
+  /* ---------------------------------------- */
+}
+
+/* ===================================================================== */
+
+/* ============================= INIT HTML ============================= */
+
+*::before,
+::after {
+  font-family: var(--ff-default);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--c-text);
+}
+
+body {
+  font-family: var(--ff-default);
+  margin: 0;
+  background-color: var(--c-bg-default);
+  color: var(--c-text);
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: var(--c-default-text);
+  font-weight: 500;
+  outline: none !important;
+  text-decoration: none;
+}
+
+input[type="submit"] {
+  outline: none;
+  border: none;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+/* ===================================================================== */
+
+/* ============================ COMPONENTS ============================= */
+
+.inner {
+  max-width: var(--mw-default);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+button {
+  background-color: var(--c-default);
+  color: var(--c-text-inverted);
+  border-radius: var(--br-button);
+  padding: 10px 20px;
+  border: none;
+}
+
+/* ===================================================================== */
+
+/* =============================== TITLE =============================== */
+h1 {
+  font-family: var(--ff-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--ff-title);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+h3 {
+  font-family: var(--ff-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+h4 {
+  font-family: var(--ff-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
+
+h5 {
+  font-family: var(--ff-title);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 0;
+}
