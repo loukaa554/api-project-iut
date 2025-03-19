@@ -1,6 +1,6 @@
-import { IngredientModel } from "./modelIngredient.js";
-import { modelCategorie } from "./modelCategorie.js";
-import { modelArea } from "./modelArea.js";
+import { IngredientModel } from "../model/modelIngredient.js";
+import { modelCategorie } from "../model/modelCategorie.js";
+import { modelArea } from "../model/modelArea.js";
 
 let ingredients = [];
 let categories = [];

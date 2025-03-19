@@ -1,5 +1,3 @@
-import { view } from "./view.js";
-
 export class IngredientModel {
   /**
    * Nom de l'ingrédient.

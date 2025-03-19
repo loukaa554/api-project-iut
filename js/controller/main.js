@@ -1,6 +1,6 @@
-import { areas, categories, ingredients } from "./init.js";
-import { view } from "./view.js";
-import { getFlagEmoji } from "./flags.js";
+import { areas, categories, ingredients } from "../controller/init.js";
+import { view } from "../view/view.js";
+import { getFlagEmoji } from "../function/flags.js";
 
 let recipes;
 
