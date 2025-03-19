@@ -2,11 +2,64 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
 }
 
-.nav {
+#recipeImage {
   width: 100vw;
+  height: 300px;
+  object-fit: cover;
+}
+
+#middle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: -70px;
+}
+
+#middle #resume,
+#middle #categories {
+  min-height: 200px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--bs-ctn);
+}
+
+#middle #resume {
+  width: 100%;
+  max-width: 62%;
+}
+
+#middle #categories {
+  width: 300px;
+}
+
+#bottom {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#bottom #ingredients {
+  width: 100%;
+  max-width: 65%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--bs-ctn);
+}
+
+#bottom #steps {
+  width: 100%;
+  max-width: 35%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--bs-ctn);
+}
+
+#bottom #steps #stepsList {
+  list-style: decimal !important;
 }
