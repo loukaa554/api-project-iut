@@ -14,7 +14,7 @@ const init = async () => {
     );
     const ingredientsData = await ingredientsResponse.json();
     ingredients = ingredientsData.meals.map(
-      (ing) => new IngredientModel(ing.strIngredient)
+      (ing) => new IngredientModel(ing.strIngredient, ing.strDescription)
     );
 
     // Charger les catégories

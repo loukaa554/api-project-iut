@@ -1,0 +1,4 @@
+footer p {
+  color: var(--c-gray-text);
+  font-size: 14px;
+}

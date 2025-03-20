@@ -8,18 +8,12 @@ export class IngredientModel {
    * @param {string} url
    * @param {string} description
    */
-  constructor(name, small, medium, large, url, description) {
+  constructor(name, description, url) {
     this._name = name ?? "Ingrédient inconnu";
     this._url = url ?? "";
-    this._small =
-      small ??
-      `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-small.png`;
-    this._medium =
-      medium ??
-      `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-medium.png`;
-    this._large =
-      large ??
-      `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-large.png`;
+    this._small = `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-small.png`;
+    this._medium = `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-medium.png`;
+    this._large = `https://www.themealdb.com/images/ingredients/${this._name.toLowerCase()}-large.png`;
     this._description = description ?? "";
   }
 

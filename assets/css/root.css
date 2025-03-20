@@ -1,4 +1,6 @@
 @import url("./nav.css");
+@import url("./footer.css");
+@import url("./search.css");
 
 /* ============================= FONT-FACE ============================= */
 
@@ -59,6 +61,7 @@
   --c-gray-hover: #e2e2e2;
   --c-gray-disabled: #aeb2ba;
   --c-gray-bg: #f7f7f7;
+  --c-gray-bg-dark: rgba(98, 98, 98, 0.442);
   --c-gray-border: #363636;
 
   /* RED */
@@ -101,7 +104,7 @@
   /* ---------------- BORDER ---------------- */
 
   --b-default: 1px solid #e4e8ee;
-  --b-secondary: 1px solid #e4e8ee;
+  --b-secondary: 1px solid var(--c-gray-bg-dark);
   --b-red: 1px solid #ecd1c9;
   --b-blue: 1px solid #b6cdec;
   --b-gray: 1px solid #d6d6d6;
@@ -182,7 +185,7 @@ input[type="radio"] {
 .inner {
   max-width: var(--mw-default);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 91px 20px 0 20px;
 }
 
 button {
@@ -191,6 +194,26 @@ button {
   border-radius: var(--br-button);
   padding: 10px 20px;
   border: none;
+}
+
+.info {
+  padding: 4px 10px;
+  border-radius: var(--br-default);
+  font-size: 14px;
+  background-color: var(--c-gray-bg);
+  color: var(--c-gray-text);
+}
+.info.ing {
+  background-color: rgb(232, 232, 255);
+  color: rgb(137, 137, 255);
+}
+.info.catg {
+  background-color: rgb(255, 249, 232);
+  color: rgb(255, 206, 92);
+}
+.info.area {
+  background-color: rgb(246, 232, 255);
+  color: rgb(208, 137, 255);
 }
 
 /* ===================================================================== */

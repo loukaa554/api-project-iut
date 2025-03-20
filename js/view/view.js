@@ -2,16 +2,29 @@
  * Module `view` pour gérer l'affichage des recettes dans l'interface utilisateur.
  */
 export const view = {
+  body: document.body,
+
   // Référence à l'élément d'entrée pour saisir un ingrédient.
   search: document.getElementById("search"),
+  searchRandomBtn: document.getElementById("searchRandomBtn"),
 
   // Référence au suggestions
   suggestions: document.getElementById("suggestions"),
   firstSuggestion: document.getElementById("firstSuggestion"),
   suggestion: document.getElementsByClassName("item-suggest"),
 
+  // Référence recherche
+  results: document.getElementById("results"),
+  ingredient: document.getElementById("ingredient"),
+  ingredientName: document.getElementById("ingredientName"),
+  ingredientImage: document.getElementById("ingredientImage"),
+  ingredientDescription: document.getElementById("ingredientDescription"),
+
   // Référence au conteneur où les recettes seront affichées.
   recipesContainer: document.getElementById("recipes"),
+
+  // Référence au Footer
+  footerDate: document.getElementById("footerDate"),
 
   /**
    * Affiche les recettes dans le conteneur prévu à cet effet.

@@ -3,31 +3,26 @@ import { view } from "../view/view.js";
 import { getFlagEmoji } from "../function/flags.js";
 import { getCatString } from "../function/catString.js";
 
-let recipes;
-
-const searchRecipes = async (ingredient) => {
-  const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`
-  );
-  const data = await response.json();
-
-  console.log(data.meals);
-
-  recipes = data.meals;
-  view.displayRecipes(recipes);
-};
-
 let selectedIndex = -1; // Index de l'élément sélectionné
+
+view.search.addEventListener("focus", () => {
+  view.body.classList.add("search-focus");
+});
+view.suggestions.addEventListener("mousedown", (e) => {
+  e.preventDefault(); // Empêche le blur de se déclencher immédiatement
+});
+view.search.addEventListener("blur", () => {
+  view.body.classList.remove("search-focus");
+});
 
 view.search.addEventListener("input", async (e) => {
   const searchValue = e.target.value.toLowerCase().trim();
 
   if (searchValue === "") {
-    view.suggestions.style.display = "none";
-    return;
+    view.suggestions.classList.remove("active");
+  } else {
+    view.suggestions.classList.add("active");
   }
-
-  view.suggestions.style.display = "block";
 
   // Icône par défaut pour les éléments sans image
   const defaultIcon = `
@@ -107,30 +102,41 @@ view.search.addEventListener("input", async (e) => {
 
   // Premier élément : "Rechercher [mot]"
   view.suggestions.innerHTML = `
-    <div class="item" data-url="/search?q=${searchValue}">
+    <a href="/search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
       <div class="left">
         ${defaultIcon}
         <span id="firstSuggestion">Rechercher "${e.target.value}"</span>
       </div>
       <i>Tous les résultats</i>
-    </div>
+    </a>
   `;
 
   // Ajouter les autres résultats
   view.suggestions.innerHTML += allResults
     .map(
       (item) => `
-      <div class="item item-suggest" data-url="/${item.name}">
+      <a href="${
+        item.type === "meal"
+          ? `/meal/?m=${item.name}`
+          : `/search/?q=${item.name}&type=${item.type}`
+      }" class="item item-suggest" data-url="${
+        item.type === "meal"
+          ? `/meal/?m=${item.name}`
+          : `/search/?q=${item.name}&type=${item.type}`
+      }"
+      >
         <div class="left">
           ${
             item.image
               ? `<img src="${item.image}" alt="${item.name}" loading="lazy"/>`
+              : item.type === "area"
+              ? `<div class="icon">${getFlagEmoji(item.name)}</div>`
               : defaultIcon
           }
           ${item.name}
         </div>
         <i class="right">${getCatString(item.type)}</i>
-      </div>
+      </a>
     `
     )
     .join("");
@@ -154,12 +160,17 @@ view.search.addEventListener("keydown", (e) => {
       selectedIndex--;
     }
   } else if (e.key === "Enter") {
+    console.log(selectedIndex);
     e.preventDefault();
-    if (selectedIndex >= 0 && items[selectedIndex]) {
+    if (items[selectedIndex]?.dataset.url) {
       window.location.href = items[selectedIndex].dataset.url;
     } else {
-      // Si "Rechercher [mot]" est sélectionné, redirige vers /search?q=[mot]
-      window.location.href = `/search?q=${view.search.value}`;
+      if (selectedIndex === -1) {
+        console.log("first");
+        window.location.href = `/search/?q=${view.search.value}&type=all`;
+      } else {
+        window.location.href = items[selectedIndex].dataset.url;
+      }
     }
   }
 
@@ -168,3 +179,25 @@ view.search.addEventListener("keydown", (e) => {
     item.classList.toggle("selected", index === selectedIndex);
   });
 });
+
+const randomRecipe = async () => {
+  try {
+    const response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/random.php"
+    );
+    const data = await response.json();
+    window.location.href = `/meal/?m=${data.meals[0].strMeal}`;
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération d'une recette aléatoire :",
+      error
+    );
+  }
+};
+view.searchRandomBtn.addEventListener("click", randomRecipe);
+
+const displayDate = () => {
+  const date = new Date();
+  view.footerDate.textContent = date.getFullYear();
+};
+displayDate();
