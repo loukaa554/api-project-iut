@@ -29,22 +29,31 @@ body {
 
 #middle #resume {
   width: 100%;
-  max-width: 62%;
+  max-width: 50%;
 }
 
 #middle #categories {
-  width: 300px;
+  width: 41.5%;
+}
+
+#middle #categories .tag {
+  display: block;
+  width: fit-content;
+  padding: 7px 15px;
+  background-color: rgba(211, 211, 211, 0.445);
+  border-radius: 10px;
 }
 
 #bottom {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   margin-top: 20px;
 }
 
 #bottom #ingredients {
   width: 100%;
-  max-width: 65%;
+  max-width: 50%;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -52,14 +61,64 @@ body {
 }
 
 #bottom #steps {
+  overflow: hidden;
   width: 100%;
-  max-width: 35%;
-  padding: 20px;
+  max-width: 45%;
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--bs-ctn);
 }
 
-#bottom #steps #stepsList {
-  list-style: decimal !important;
+#bottom #steps h2 {
+  padding: 20px;
+}
+
+#bottom #steps #stepsList .step {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  padding-left: 20px;
+  font-size: 15px;
+  border-bottom: var(--b-default);
+}
+
+#bottom #steps #stepsList .step .circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  max-width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  color: white;
+  background-color: var(--c-default);
+  border-radius: 50%;
+}
+
+#bottom #steps #stepsList .step p {
+  max-width: 80%;
+}
+
+#bottom #ingredientsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#bottom #ingredientsList .ingredient {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: var(--b-default);
+}
+
+#bottom #ingredientsList .ingredient img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#bottom #ingredientsList .ingredient .measure {
+  color: gray;
 }

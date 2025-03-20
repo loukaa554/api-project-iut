@@ -1,4 +1,5 @@
-import { capitalizeFirstLetter, capitalizeWords } from "../function/str.js";
+import { applyGradientToSteps } from "../function/color.js";
+import { capitalizeWords } from "../function/str.js";
 import { recipeDetailView } from "../view/recipeDetailView.js";
 import { ingredients } from "./init.js";
 
@@ -7,10 +8,10 @@ let ingredientsList = [];
 let categories = [];
 let instructions = [];
 
-const getRecipeDetails = async (id) => {
+const getRecipeDetails = async (mealName) => {
   try {
     const response = await fetch(
-      `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+      `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`
     );
 
     if (!response.ok) {
@@ -28,7 +29,8 @@ const getRecipeDetails = async (id) => {
 
     // Récupération des ingrédients et quantités
     ingredientsList = [];
-    await new Promise((resolve) => setTimeout(resolve, 11));
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
     for (let i = 1; i <= 20; i++) {
       let ingredientName = meal[`strIngredient${i}`];
       let measure = meal[`strMeasure${i}`];
@@ -36,14 +38,9 @@ const getRecipeDetails = async (id) => {
       if (ingredientName && ingredientName.trim() !== "") {
         ingredientName = capitalizeWords(ingredientName.trim());
 
-        // Utilisation de filter (renvoie un tableau)
-        let filteredIngredients = ingredients.filter(
+        let ingredient = ingredients.find(
           (ing) => ing.getName() === ingredientName
         );
-
-        // On prend le premier élément du tableau s'il existe
-        let ingredient =
-          filteredIngredients.length > 0 ? filteredIngredients[0] : null;
 
         if (ingredient) {
           ingredientsList.push({
@@ -77,8 +74,8 @@ const getRecipeDetails = async (id) => {
     recipeDetailView.title.textContent = meal.strMeal || "Nom inconnu";
     recipeDetailView.ingredients.innerHTML = ingredientsList
       .map(
-        (i) =>
-          `<li class="ingredient">
+        (i) => `
+          <li class="ingredient">
             <img src="${i.image}" alt="${i.name}"/>
             <div class="right">
               <p>${i.name}</p>
@@ -89,7 +86,13 @@ const getRecipeDetails = async (id) => {
       .join("");
 
     recipeDetailView.instructions.innerHTML = instructions
-      .map((i) => `<li>${i}</li>`)
+      .map(
+        (i, index) => `
+        <div class="step">
+          <div class="circle">${index + 1}</div>
+          <p>${i}</p>
+        </div>`
+      )
       .join("");
 
     recipeDetailView.categories.innerHTML = categories
@@ -103,4 +106,4 @@ const getRecipeDetails = async (id) => {
   }
 };
 
-getRecipeDetails("52772");
+getRecipeDetails("Chicken Parmentier").then(() => applyGradientToSteps());
