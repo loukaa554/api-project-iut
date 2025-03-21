@@ -41,3 +41,4 @@ export const capitalizeWords = (str) => {
     .map((word) => capitalizeFirstLetter(word))
     .join(" ");
 };
+export const splitString = (str) => str.split(" ");

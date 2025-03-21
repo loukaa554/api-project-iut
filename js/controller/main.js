@@ -201,3 +201,32 @@ const displayDate = () => {
   view.footerDate.textContent = date.getFullYear();
 };
 displayDate();
+
+// nav
+view.iconResp.addEventListener("click", () => {
+  const menuIcon = `
+          <svg
+            class="icon-resp"
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 6l16 0"></path>
+            <path d="M4 12l16 0"></path>
+            <path d="M4 18l16 0"></path>
+          </svg>`;
+
+  const closeIcon = `<svg 
+            class="icon-resp" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>`;
+
+  view.iconResp.innerHTML = view.nav.classList.contains("active")
+    ? menuIcon
+    : closeIcon;
+  view.nav.classList.toggle("active");
+});

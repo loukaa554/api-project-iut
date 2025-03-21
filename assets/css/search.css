@@ -28,6 +28,7 @@
   fill: var(--c-gray-text);
 }
 .search .search-bar {
+  cursor: text;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -142,6 +143,7 @@
   align-items: center;
 }
 .search .suggestions .item i {
+  text-align: end;
   font-size: 15px;
   color: var(--c-gray-text);
 }

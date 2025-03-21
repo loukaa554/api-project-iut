@@ -1,14 +1,19 @@
 nav {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  background: var(--c-bg-default);
+  padding: 12px 0;
+  z-index: 2;
+}
+nav > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: var(--mw-default);
   width: calc(100% - 40px);
-  background: var(--c-bg-default);
-  padding: 12px 0;
-  z-index: 2;
+  margin: auto;
 }
 nav ul {
   display: flex;
@@ -20,4 +25,36 @@ nav ul li {
 }
 nav ul li:hover {
   color: var(--c-default);
+}
+
+nav .icon-ctn {
+  display: none;
+}
+nav .icon-resp {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+}
+nav .list-resp {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-top: 60px;
+  width: 100vw;
+  height: 100vh;
+}
+nav .list-resp li {
+  font-size: 24px;
+}
+@media screen and (max-width: 600px) {
+  nav .list {
+    display: none;
+  }
+  nav.active .list-resp {
+    display: flex;
+  }
+  nav .icon-ctn {
+    display: block;
+  }
 }

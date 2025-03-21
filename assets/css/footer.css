@@ -1,4 +1,5 @@
 footer p {
+  text-align: center;
   color: var(--c-gray-text);
   font-size: 14px;
 }

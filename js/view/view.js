@@ -4,6 +4,10 @@
 export const view = {
   body: document.body,
 
+  // Référence à l'élément de nav.
+  nav: document.getElementById("nav"),
+  iconResp: document.getElementById("iconResp"),
+
   // Référence à l'élément d'entrée pour saisir un ingrédient.
   search: document.getElementById("search"),
   searchRandomBtn: document.getElementById("searchRandomBtn"),
@@ -12,6 +16,8 @@ export const view = {
   suggestions: document.getElementById("suggestions"),
   firstSuggestion: document.getElementById("firstSuggestion"),
   suggestion: document.getElementsByClassName("item-suggest"),
+  noResults: document.getElementById("noResults"),
+  noResultsSuggest: document.getElementById("noResultsSuggest"),
 
   // Référence recherche
   results: document.getElementById("results"),
@@ -19,6 +25,7 @@ export const view = {
   ingredientName: document.getElementById("ingredientName"),
   ingredientImage: document.getElementById("ingredientImage"),
   ingredientDescription: document.getElementById("ingredientDescription"),
+  ingredients: document.getElementById("ingredients"),
 
   // Référence au conteneur où les recettes seront affichées.
   recipesContainer: document.getElementById("recipes"),

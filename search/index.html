@@ -4,23 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tomato - Rechercher sur Reciply</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body class="inner">
-    <nav>
-      <h3>
-        <a href="/">Reciply</a>
-      </h3>
-      <ul>
+    <nav id="nav">
+      <div>
+        <h3>
+          <a href="/">Reciply</a>
+        </h3>
+        <ul class="list">
+          <li><a href="github.com">Github</a></li>
+          <li><a href="github.com">Documentation</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div id="iconResp" class="icon-ctn">
+          <svg
+            class="icon-resp"
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 6l16 0"></path>
+            <path d="M4 12l16 0"></path>
+            <path d="M4 18l16 0"></path>
+          </svg>
+        </div>
+      </div>
+      <ul class="list-resp" id="list-resp">
         <li><a href="github.com">Github</a></li>
         <li><a href="github.com">Documentation</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
     <form class="search suggest">
-      <div class="search-bar">
+      <label for="search" class="search-bar">
         <div class="left">
           <svg
             stroke="currentColor"
@@ -79,24 +113,37 @@
           </svg>
           <div><span>↵</span>Enter</div>
         </div>
-      </div>
+      </label>
       <div class="suggestions" id="suggestions"></div>
     </form>
     <div class="wrapper">
-      <div class="results" id="results"></div>
-      <div class="ingredient" id="ingredient">
-        <img
-          id="ingredientImage"
-          src="https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg"
-          alt=""
-        />
-        <div class="content">
-          <h2 id="ingredientName">Tomtato Ketchup</h2>
-          <p id="ingredientDescription">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi
-            delectus amet error, minus, est dolorum corporis ducimus dolore eum
-            neque modi beatae
-          </p>
+      <div class="ingredients" id="ingredients"></div>
+      <div class="flex">
+        <div class="results" id="results">
+          <div class="no-result">
+            <p>
+              Petit problème, aucun résultat pour
+              <span id="noResults">"Tomato"</span>
+            </p>
+            <p>
+              Essayer avec <span id="noResultsSuggest">"Tomato", "kinned"</span>
+            </p>
+          </div>
+        </div>
+        <div class="ingredient" id="ingredient">
+          <img
+            id="ingredientImage"
+            src="https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg"
+            alt=""
+          />
+          <div class="content">
+            <h2 id="ingredientName">Tomtato Ketchup</h2>
+            <p id="ingredientDescription">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Excepturi delectus amet error, minus, est dolorum corporis ducimus
+              dolore eum neque modi beatae
+            </p>
+          </div>
         </div>
       </div>
     </div>

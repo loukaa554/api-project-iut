@@ -1,10 +1,19 @@
-import { slugStr, stringToArray, truncateText } from "../function/str.js";
+import {
+  slugStr,
+  splitString,
+  stringToArray,
+  truncateText,
+} from "../function/str.js";
 import { view } from "../view/view.js";
 import { ingredients } from "./init.js";
 window.onload = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const searchValue = urlParams.get("q");
   const type = urlParams.get("type");
+
+  document.title = `Recherche ${searchValue} - Reciply`;
+
+  view.search.value = searchValue;
 
   if (searchValue) {
     if (type === "ingredient") {
@@ -20,28 +29,10 @@ const search = async (sv, type) => {
   const searchValue = sv.toLowerCase().trim();
 
   // Fonction pour récupérer l'image associée à chaque type d'élément
-  const getImageUrl = (item, type) => {
-    if (type === "ingredient") {
-      return `https://www.themealdb.com/images/ingredients/${item
-        .getName()
-        .toLowerCase()}-small.png`;
-    } else if (type === "meal") {
-      return item.image || null;
-    }
-    return null;
-  };
 
   // Fusionner ingrédients, catégories, pays et recettes
-  let allResults = [
-    ...ingredients.map((i) => ({
-      name: i.getName(),
-      type: "ingredient",
-      image: getImageUrl(i, "ingredient"),
-    })),
-  ];
+  let allResults = [];
 
-  // Recherche des recettes en direct depuis l'API
-  // Recherche des recettes en direct depuis l'API
   try {
     const url =
       type === "ingredient"
@@ -98,11 +89,55 @@ const search = async (sv, type) => {
     );
   }
 
-  // Ajouter les autres résultats
-  view.results.innerHTML += allResults
+  let filteredIngredients = [];
+  if (type === "all") {
+    console.log(ingredients);
+    console.log(
+      ingredients.filter((ing) =>
+        ing.getName().toLowerCase().includes(searchValue)
+      )
+    );
+    filteredIngredients = ingredients.filter((ing) =>
+      ing.getName().toLowerCase().includes(searchValue)
+    );
+  }
+  if (filteredIngredients.length > 0) {
+    view.ingredients.style.display = "flex";
+  }
+  view.ingredients.innerHTML = filteredIngredients
     .map(
-      (item) => `
-      <a href="/meal?m=${item.name}" class="item">
+      (ing) => `
+        <a class="item" href="/search/?q=${ing.getName()}&type=ingredient">
+          <img
+            src="${ing.getSmall()}"
+            alt=""
+          />
+          <span>${ing.getName()}</span>
+        </a>
+    `
+    )
+    .join("");
+
+  if (allResults.length === 0) {
+    view.noResults.parentElement.parentElement.style.display = "block";
+    view.noResults.innerText = `"${searchValue}"`;
+    console.log(searchValue);
+    const suggest = splitString(searchValue);
+    console.log(suggest);
+    if (suggest.length > 1) {
+      view.noResultsSuggest.innerHTML = suggest
+        .map(
+          (s) => `"<a href="/search/?q=${s}&type=all"
+        >${s}</a>"`
+        )
+        .join(", ");
+    }
+  } else {
+    // Ajouter les autres résultats
+    view.results.innerHTML = allResults
+      .map(
+        (item) => `
+      <a href="/meal/?m=${item.name}" class="item">
         <div class="left">
           <div>
             <h3>${item.name}</h3>
@@ -128,12 +163,12 @@ const search = async (sv, type) => {
         </div>
       </a>
     `
-    )
-    .join("");
+      )
+      .join("");
+  }
 };
 
 const searchWithIngredient = (ingredient, type) => {
-  view.search.value = ingredient;
   search(ingredient, type);
 };
 
@@ -150,7 +185,7 @@ const getDescription = async (meal) => {
 };
 
 const displayIngredient = (ing) => {
-  view.ingredient.style.display = "block";
+  view.ingredient.style.display = "flex";
   view.ingredientDescription.innerText = ing.getDescription();
   view.ingredientName.innerText = ing.getName();
   view.ingredientImage.src = ing.getMedium();
