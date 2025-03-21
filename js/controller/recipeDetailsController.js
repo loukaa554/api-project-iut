@@ -1,5 +1,5 @@
 import { applyGradientToSteps } from "../function/color.js";
-import { capitalizeWords } from "../function/str.js";
+import { capitalizeWords, stringToArray } from "../function/str.js";
 import { recipeDetailView } from "../view/recipeDetailView.js";
 import { ingredients } from "./init.js";
 
@@ -7,6 +7,15 @@ let meal = {};
 let ingredientsList = [];
 let categories = [];
 let instructions = [];
+
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchValue = urlParams.get("m");
+
+  if (searchValue) {
+    getRecipeDetails(searchValue).then(() => applyGradientToSteps());
+  }
+};
 
 const getRecipeDetails = async (mealName) => {
   try {
@@ -53,15 +62,14 @@ const getRecipeDetails = async (mealName) => {
         }
       }
     }
-
     // Récupération de la catégorie et des instructions
-    categories = meal.strCategory ? [meal.strCategory] : [];
+    categories = stringToArray(meal.strTags);
 
     // Transformation des instructions en tableau
     instructions = meal.strInstructions
       ? meal.strInstructions
-          .split(/\r\n|\.\s/)
-          .filter((step) => step.trim() !== "")
+          .split(/\r\n|\.\s|\d+\.\s?|step\s\d+\s?:?/i) // Ajout du motif "step X" pour la séparation
+          .filter((step) => step.trim() !== "" && step !== step.toUpperCase()) // Filtrer les lignes en majuscules
       : [];
 
     console.log("Meal:", meal);
@@ -96,7 +104,7 @@ const getRecipeDetails = async (mealName) => {
       .join("");
 
     recipeDetailView.categories.innerHTML = categories
-      .map((i) => `<li class="tag">${i}</li>`)
+      .map((i) => `<li class="info">${i}</li>`)
       .join("");
   } catch (error) {
     console.error(
@@ -105,5 +113,3 @@ const getRecipeDetails = async (mealName) => {
     );
   }
 };
-
-getRecipeDetails("Chicken Parmentier").then(() => applyGradientToSteps());

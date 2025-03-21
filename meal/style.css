@@ -12,6 +12,7 @@ body {
 
 #middle {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -36,16 +37,15 @@ body {
   width: 41.5%;
 }
 
-#middle #categories .tag {
-  display: block;
-  width: fit-content;
-  padding: 7px 15px;
-  background-color: rgba(211, 211, 211, 0.445);
-  border-radius: 10px;
+#middle #categoriesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 #bottom {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   margin-top: 20px;
@@ -121,4 +121,54 @@ body {
 
 #bottom #ingredientsList .ingredient .measure {
   color: gray;
+}
+
+@media (max-width: 768px) {
+  #middle {
+    flex-direction: column;
+    margin-top: -50px;
+  }
+
+  #middle #resume,
+  #middle #categories {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #bottom {
+    flex-direction: column;
+  }
+
+  #bottom #ingredients,
+  #bottom #steps {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #bottom #ingredientsList {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  #recipeImage {
+    height: 200px;
+  }
+
+  #middle #resume h2,
+  #middle #categories h2,
+  #bottom #ingredients h2,
+  #bottom #steps h2 {
+    font-size: 18px;
+  }
+
+  #bottom #steps #stepsList .step {
+    font-size: 14px;
+  }
+
+  #bottom #ingredientsList .ingredient img {
+    width: 50px;
+    height: 50px;
+  }
 }
