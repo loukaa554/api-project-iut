@@ -17,7 +17,6 @@ window.onload = () => {
 
   if (searchValue) {
     if (type === "ingredient") {
-      console.log(searchValue);
       searchWithIngredient(searchValue, type);
     } else {
       search(searchValue, type);
@@ -46,7 +45,6 @@ const search = async (sv, type) => {
             searchValue
           )}`
         : `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`;
-    console.log(url);
     const recipeResponse = await fetch(url);
     const recipeData = await recipeResponse.json();
 
@@ -91,12 +89,6 @@ const search = async (sv, type) => {
 
   let filteredIngredients = [];
   if (type === "all") {
-    console.log(ingredients);
-    console.log(
-      ingredients.filter((ing) =>
-        ing.getName().toLowerCase().includes(searchValue)
-      )
-    );
     filteredIngredients = ingredients.filter((ing) =>
       ing.getName().toLowerCase().includes(searchValue)
     );
@@ -105,6 +97,7 @@ const search = async (sv, type) => {
     view.ingredients.style.display = "flex";
   }
   view.ingredients.innerHTML = filteredIngredients
+    .slice(0, 20)
     .map(
       (ing) => `
         <a class="item" href="/search/?q=${ing.getName()}&type=ingredient">
@@ -121,9 +114,7 @@ const search = async (sv, type) => {
   if (allResults.length === 0) {
     view.noResults.parentElement.parentElement.style.display = "block";
     view.noResults.innerText = `"${searchValue}"`;
-    console.log(searchValue);
     const suggest = splitString(searchValue);
-    console.log(suggest);
     if (suggest.length > 1) {
       view.noResultsSuggest.innerHTML = suggest
         .map(

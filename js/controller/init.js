@@ -6,6 +6,11 @@ let ingredients = [];
 let categories = [];
 let areas = [];
 
+localStorage.setItem(
+  "like",
+  JSON.stringify(["Chicken & mushroom Hotpot", "Chicken Alfredo Primavera"])
+);
+
 const init = async () => {
   try {
     // Charger les ingrédients

@@ -56,7 +56,7 @@
     <div class="wrapper">
       <h1>Le web de la cuisine</h1>
       <form class="search suggest not">
-        <div class="search-bar">
+        <label for="search" class="search-bar">
           <div class="left">
             <svg
               stroke="currentColor"
@@ -80,6 +80,25 @@
             />
           </div>
           <div class="right">
+            <a href="/search/?q=&type=like">
+              <svg
+                class="icon"
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                height="200px"
+                width="200px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                  d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0 0 18 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                ></path></svg
+            ></a>
             <svg
               id="searchRandomBtn"
               class="icon"
@@ -115,7 +134,7 @@
             </svg>
             <div><span>↵</span>Enter</div>
           </div>
-        </div>
+        </label>
         <div class="suggestions" id="suggestions"></div>
       </form>
       <div class="recipes" id="recipes"></div>

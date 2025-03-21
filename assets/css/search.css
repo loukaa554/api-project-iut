@@ -19,6 +19,11 @@
   position: relative;
   max-width: 600px;
 }
+.search .right a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .search svg,
 .search .icon {
   width: 20px;
@@ -26,6 +31,9 @@
   margin: 10px;
   border-radius: 50%;
   fill: var(--c-gray-text);
+}
+.search .right .icon {
+  margin-left: 0;
 }
 .search .search-bar {
   cursor: text;
