@@ -102,7 +102,7 @@ const search = async (sv, type) => {
   view.results.innerHTML += allResults
     .map(
       (item) => `
-      <a href="/meal?m=${item.name}" class="item">
+      <a href="/meal/?m=${item.name}" class="item">
         <div class="left">
           <div>
             <h3>${item.name}</h3>
