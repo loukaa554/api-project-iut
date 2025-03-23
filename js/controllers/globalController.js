@@ -119,6 +119,12 @@ const setupEventListeners = () => {
   view.iconResp.addEventListener("click", view.toggleNav);
   view.searchDarkBtn.addEventListener("click", toggleDarkMode);
 
+  const darkMode = localStorage.getItem("darkMode") === "true";
+  if (darkMode) {
+    view.body.classList
+      ? view.body.classList.add("dark")
+      : view.body.classList.remove("dark");
+  }
   view.displayDate();
 };
 

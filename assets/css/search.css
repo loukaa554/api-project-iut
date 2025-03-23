@@ -35,10 +35,11 @@
 #searchLikeBtn .icon {
   fill: var(--c-bg-default);
 }
-#searchLikeBtn.active .icon {
-  fill: var(--c-pink);
-
+#searchLikeBtn.active {
   color: var(--c-pink);
+}
+#searchLikeBtn.active path {
+  fill: var(--c-pink) !important;
 }
 .search .right .icon {
   margin-left: 0;
@@ -94,15 +95,15 @@
   outline: none;
   color: var(--c-text);
 }
-.search .fill-dark {
-  display: none;
-}
-.dark .search .fill-dark {
-  display: block;
-  fill: var(--c-text);
+.search .icon-dark {
+  width: 20px !important;
+  height: 20px !important;
 }
 .dark .search .icon-dark {
-  display: none;
+  color: var(--c-text);
+}
+.dark .search .icon-dark path {
+  fill: var(--c-text);
 }
 .search .suggestions {
   display: none;
