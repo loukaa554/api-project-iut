@@ -117,8 +117,10 @@ const setupEventListeners = () => {
     view.searchRandomBtn.addEventListener("click", randomRecipe);
   }
   view.iconResp.addEventListener("click", view.toggleNav);
-  view.searchDarkBtn.addEventListener("click", toggleDarkMode);
 
+  if (view.searchDarkBtn) {
+    view.searchDarkBtn.addEventListener("click", toggleDarkMode);
+  }
   const darkMode = localStorage.getItem("darkMode") === "true";
   if (darkMode) {
     view.body.classList

@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body class="inner dark">
-    <nav class="nav">
+  <body class="inner">
+    <nav id="nav">
       <div>
         <h3>
           <a href="/">Reciply</a>
@@ -28,7 +28,7 @@
           <li><a href="github.com">Documentation</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
-        <div class="iconResp icon-ctn">
+        <div id="iconResp" class="icon-ctn">
           <svg
             class="icon-resp"
             stroke="currentColor"
@@ -47,7 +47,7 @@
           </svg>
         </div>
       </div>
-      <ul class="list-resp">
+      <ul class="list-resp" id="list-resp">
         <li><a href="github.com">Github</a></li>
         <li><a href="github.com">Documentation</a></li>
         <li><a href="/contact">Contact</a></li>
@@ -134,11 +134,9 @@
       </section>
     </section>
     <footer>
-      <p>
-        &copy; <span class="footerDate"></span> Reciply. Tous droits réservés.
-      </p>
+      <p>&copy; <span id="footerDate"></span> Reciply. Tous droits réservés.</p>
     </footer>
-    <script type="module" src="../js/controllers/mealController.js"></script>
     <script type="module" src="../js/controllers/globalController.js"></script>
+    <script type="module" src="../js/controllers/mealController.js"></script>
   </body>
 </html>
