@@ -90,6 +90,11 @@ const randomRecipe = async () => {
   }
 };
 
+const toggleDarkMode = () => {
+  view.body.classList.toggle("dark");
+  localStorage.setItem("darkMode", view.body.classList.contains("dark"));
+};
+
 // Configuration des événements UI
 const setupEventListeners = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -112,6 +117,7 @@ const setupEventListeners = () => {
     view.searchRandomBtn.addEventListener("click", randomRecipe);
   }
   view.iconResp.addEventListener("click", view.toggleNav);
+  view.searchDarkBtn.addEventListener("click", toggleDarkMode);
 
   view.displayDate();
 };

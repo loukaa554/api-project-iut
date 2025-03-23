@@ -23,6 +23,7 @@ export const view = {
   suggestion: document.getElementsByClassName("item-suggest"),
 
   searchLikeBtn: document.getElementById("searchLikeBtn"),
+  searchDarkBtn: document.getElementById("searchDarkBtn"),
 
   // Référence au conteneur où les recettes seront affichées.
 

@@ -94,6 +94,16 @@
   outline: none;
   color: var(--c-text);
 }
+.search .fill-dark {
+  display: none;
+}
+.dark .search .fill-dark {
+  display: block;
+  fill: var(--c-text);
+}
+.dark .search .icon-dark {
+  display: none;
+}
 .search .suggestions {
   display: none;
   width: calc(100%);
