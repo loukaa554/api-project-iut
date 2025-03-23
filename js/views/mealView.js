@@ -11,14 +11,14 @@
  * @property {HTMLElement} nbPersonnes - Élément HTML pour afficher le nombre de personnes pour la recette.
  */
 export const mealView = {
-  image: document.querySelector(".recipeImage"),
-  title: document.querySelector(".recipeTitle"),
-  ingredients: document.querySelector(".ingredientsList"),
-  instructions: document.querySelector(".stepsList"),
-  categories: document.querySelector(".categoriesList"),
+  image: document.getElementById("recipeImage"),
+  title: document.getElementById("recipeTitle"),
+  ingredients: document.getElementById("ingredientsList"),
+  instructions: document.getElementById("stepsList"),
+  categories: document.getElementById("categoriesList"),
 
-  btnBack: document.querySelector(".btn-back"),
-  btnLike: document.querySelector(".btn-like"),
+  btnBack: document.getElementById("btnBack"),
+  btnLike: document.getElementById("btnLike"),
 
   displayImage(imageUrl) {
     this.image.src = imageUrl || "";

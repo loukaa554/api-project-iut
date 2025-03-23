@@ -43,7 +43,7 @@ body.inner {
   color: var(--c-text);
 }
 
-.bar .btn-like.liked svg {
+.bar #btnLike.liked svg {
   color: var(--c-pink);
   fill: var(--c-pink);
 }
@@ -52,7 +52,7 @@ body.inner {
   width: 100%;
 }
 
-.recipeImage {
+.recipe-image {
   width: 100vw;
   height: 300px;
   object-fit: cover;
@@ -85,7 +85,7 @@ body.inner {
   width: 42%;
 }
 
-.wrapper .middle .categoriesList {
+.wrapper .middle .categories-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -118,7 +118,7 @@ body.inner {
   box-shadow: var(--bs-ctn);
 }
 
-.wrapper .bottom .steps .stepsList .step {
+.wrapper .bottom .steps .steps-list .step {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -131,7 +131,7 @@ body.inner {
   border-bottom: var(--b-default);
 }
 
-.wrapper .bottom .steps .stepsList .step .circle {
+.wrapper .bottom .steps .steps-list .step .circle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,37 +144,37 @@ body.inner {
   border-radius: 50%;
 }
 
-.wrapper .bottom .steps .stepsList .step p {
+.wrapper .bottom .steps .steps-list .step p {
   max-width: 80%;
 }
 
-.wrapper .bottom .ingredientsList {
+.wrapper .bottom .ingredients-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-.wrapper .bottom .ingredientsList .ingredient {
+.wrapper .bottom .ingredients-list .ingredient {
   display: flex;
   gap: 10px;
   padding: 10px 0;
   border-bottom: var(--b-default);
 }
 
-.wrapper .bottom .ingredientsList .ingredient img {
+.wrapper .bottom .ingredients-list .ingredient img {
   width: 65px;
   height: 65px;
   object-fit: cover;
   border-radius: 50%;
 }
 
-.wrapper .bottom .ingredientsList .ingredient .measure {
+.wrapper .bottom .ingredients-list .ingredient .measure {
   color: gray;
 }
 
 @media (max-width: 1615px) {
   .wrapper h2,
   .wrapper .middle p,
-  .wrapper .categoriesList {
+  .wrapper .categories-list {
     padding-left: 20px;
   }
 
@@ -203,7 +203,7 @@ body.inner {
     margin-bottom: 20px;
   }
 
-  .wrapper .bottom .ingredientsList {
+  .wrapper .bottom .ingredients-list {
     grid-template-columns: 1fr;
   }
 
@@ -226,11 +226,11 @@ body.inner {
     font-size: 18px;
   }
 
-  .wrapper .bottom .steps .stepsList .step {
+  .wrapper .bottom .steps .steps-list .step {
     font-size: 14px;
   }
 
-  .wrapper .bottom .ingredientsList .ingredient img {
+  .wrapper .bottom .ingredients-list .ingredient img {
     width: 50px;
     height: 50px;
   }

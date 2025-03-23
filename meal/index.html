@@ -55,7 +55,7 @@
     </nav>
     <div class="bar">
       <div class="left">
-        <div class="btn-back btn">
+        <div class="btn" id="btnBack">
           <svg
             stroke="currentColor"
             fill="none"
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="right">
-        <a href="/" class="btn-search btn">
+        <a href="/" class="btn" id="btnSearch">
           <svg
             stroke="currentColor"
             fill="currentColor"
@@ -88,7 +88,7 @@
             ></path>
           </svg>
         </a>
-        <div class="btn-like btn">
+        <div class="btn" id="btnLike">
           <svg
             stroke="currentColor"
             fill="none"
@@ -107,29 +107,29 @@
         </div>
       </div>
     </div>
-    <img class="recipeImage" src="null" alt="" />
+    <img class="recipe-image" id="recipeImage" src="null" alt="" />
 
     <section class="wrapper">
       <section class="middle">
         <div class="resume">
-          <h2 class="recipeTitle">Titre de la recette</h2>
+          <h2 class="recipe-title" id="recipeTitle">Titre de la recette</h2>
           <p class="recipeDescription">
             Aucune description pour cette recette...
           </p>
         </div>
         <div class="categories">
           <h2>Categories</h2>
-          <ul class="categoriesList"></ul>
+          <ul class="categories-list" id="categoriesList"></ul>
         </div>
       </section>
       <section class="bottom">
         <div class="ingredients">
           <h2>Ingredients</h2>
-          <ul class="ingredientsList"></ul>
+          <ul class="ingredients-list" id="ingredientsList"></ul>
         </div>
         <div class="steps">
           <h2>Steps</h2>
-          <ol class="stepsList"></ol>
+          <ol class="steps-list" id="stepsList"></ol>
         </div>
       </section>
     </section>
