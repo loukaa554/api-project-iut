@@ -8,7 +8,7 @@
   max-width: var(--mw-default);
   border-radius: var(--br-button);
   outline: var(--b-default);
-  background-color: white;
+  background-color: var(--c-bg-default);
   z-index: 1;
 }
 .search-focus .search {
@@ -92,6 +92,7 @@
   background: none;
   border: none;
   outline: none;
+  color: var(--c-text);
 }
 .search .suggestions {
   display: none;
