@@ -10,10 +10,54 @@
  * @property {HTMLElement} difficulty - Élément HTML pour afficher le niveau de difficulté de la recette.
  * @property {HTMLElement} nbPersonnes - Élément HTML pour afficher le nombre de personnes pour la recette.
  */
-export const recipeDetailView = {
+export const mealView = {
   image: document.getElementById("recipeImage"),
   title: document.getElementById("recipeTitle"),
   ingredients: document.getElementById("ingredientsList"),
   instructions: document.getElementById("stepsList"),
   categories: document.getElementById("categoriesList"),
+
+  btnBack: document.getElementById("btnBack"),
+  btnLike: document.getElementById("btnLike"),
+
+  displayImage(imageUrl) {
+    this.image.src = imageUrl || "";
+  },
+
+  displayTitle(title) {
+    this.title.textContent = title || "Nom inconnu";
+  },
+
+  displayIngredients(ingredientsList) {
+    this.ingredients.innerHTML = ingredientsList
+      .map(
+        (i) => `
+          <li class="ingredient">
+            <img src="${i.image}" alt="${i.name}"/>
+            <div class="right">
+              <p>${i.name}</p>
+              <p class="measure">${i.measure}</p>
+            </div>
+          </li>`
+      )
+      .join("");
+  },
+
+  displayInstructions(instructions) {
+    this.instructions.innerHTML = instructions
+      .map(
+        (i, index) => `
+        <div class="step">
+          <div class="circle">${index + 1}</div>
+          <p>${i}</p>
+        </div>`
+      )
+      .join("");
+  },
+
+  displayCategories(categories) {
+    this.categories.innerHTML = categories
+      .map((i) => `<li class="info">${i}</li>`)
+      .join("");
+  },
 };

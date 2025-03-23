@@ -1,24 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Le web de votre cuisine</title>
+
+    <!-- favicon -->
+    <link rel="icon" href="../assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../assets/favicon/apple-touch-icon.png"
+    />
+
     <link rel="stylesheet" href="../assets/css/reset.css" />
     <link rel="stylesheet" href="../assets/css/root.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body class="inner">
-    <nav>
-      <h3>
-        <a href="/">Reciply</a>
-      </h3>
-      <ul>
+    <nav id="nav">
+      <div>
+        <h3>
+          <a href="/">Reciply</a>
+        </h3>
+        <ul class="list">
+          <li><a href="github.com">Github</a></li>
+          <li><a href="github.com">Documentation</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div id="iconResp" class="icon-ctn">
+          <svg
+            class="icon-resp"
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M4 6l16 0"></path>
+            <path d="M4 12l16 0"></path>
+            <path d="M4 18l16 0"></path>
+          </svg>
+        </div>
+      </div>
+      <ul class="list-resp" id="list-resp">
         <li><a href="github.com">Github</a></li>
         <li><a href="github.com">Documentation</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
     </nav>
+    <div class="bar">
+      <div class="left">
+        <div class="btn-back btn" id="btnBack">
+          <svg
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+        </div>
+      </div>
+      <div class="right">
+        <a href="/" class="btn-search btn">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 2C15.968 2 20 6.032 20 11C20 15.968 15.968 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2ZM11 18C14.8675 18 18 14.8675 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18ZM19.4853 18.0711L22.3137 20.8995L20.8995 22.3137L18.0711 19.4853L19.4853 18.0711Z"
+            ></path>
+          </svg>
+        </a>
+        <div class="btn-like btn" id="btnLike">
+          <svg
+            stroke="currentColor"
+            fill="none"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
     <img id="recipeImage" src="null" alt="" />
     <section id="middle">
       <div id="resume">
@@ -40,9 +128,10 @@
         <ol id="stepsList"></ol>
       </div>
     </section>
-    <script
-      type="module"
-      src="../js/controller/recipeDetailsController.js"
-    ></script>
+    <footer>
+      <p>&copy; <span id="footerDate"></span> Reciply. Tous droits réservés.</p>
+    </footer>
+    <script type="module" src="../js/controllers/mealController.js"></script>
+    <script type="module" src="../js/controllers/globalController.js"></script>
   </body>
 </html>

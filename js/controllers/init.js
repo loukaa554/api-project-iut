@@ -1,15 +1,10 @@
-import { IngredientModel } from "../model/modelIngredient.js";
-import { modelCategorie } from "../model/modelCategorie.js";
-import { modelArea } from "../model/modelArea.js";
+import { IngredientModel } from "../models/modelIngredient.js";
+import { modelCategorie } from "../models/modelCategorie.js";
+import { modelArea } from "../models/modelArea.js";
 
 let ingredients = [];
 let categories = [];
 let areas = [];
-
-localStorage.setItem(
-  "like",
-  JSON.stringify(["Chicken & mushroom Hotpot", "Chicken Alfredo Primavera"])
-);
 
 const init = async () => {
   try {

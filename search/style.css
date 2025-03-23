@@ -134,3 +134,7 @@
     flex-direction: column;
   }
 }
+
+.no-result-fav {
+  display: none;
+}

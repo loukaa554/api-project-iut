@@ -3,6 +3,50 @@ body {
   flex-direction: column;
   align-items: center;
 }
+body.inner {
+  padding-top: 75px;
+}
+
+.bar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--mw-default);
+  width: calc(100% - 40px);
+  padding: 0 20px;
+  padding-top: 15px;
+  margin: auto;
+}
+.bar > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bar .btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: var(--c-bg-default);
+  transition: var(--tr-default);
+}
+.bar .btn:hover {
+  background-color: var(--c-bg-hover);
+}
+
+.bar svg {
+  width: 22px;
+  height: 22px;
+  color: var(--c-text);
+}
+
+.bar .btn-like.liked svg {
+  color: var(--c-pink);
+  fill: var(--c-pink);
+}
 
 #recipeImage {
   width: 100vw;
@@ -171,4 +215,8 @@ body {
     width: 50px;
     height: 50px;
   }
+}
+
+footer {
+  margin-top: 30px;
 }

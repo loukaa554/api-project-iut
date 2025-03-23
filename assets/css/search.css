@@ -32,6 +32,14 @@
   border-radius: 50%;
   fill: var(--c-gray-text);
 }
+#searchLikeBtn .icon {
+  fill: var(--c-bg-default);
+}
+#searchLikeBtn.active .icon {
+  fill: var(--c-pink);
+
+  color: var(--c-pink);
+}
 .search .right .icon {
   margin-left: 0;
 }

@@ -3,7 +3,6 @@
  * to all elements with the class `.step .circle`.
  */
 export const applyGradientToSteps = () => {
-  console.log("applyGradientToSteps");
   const steps = document.querySelectorAll(".step .circle");
   const totalSteps = steps.length;
 
