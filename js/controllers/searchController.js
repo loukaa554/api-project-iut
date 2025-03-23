@@ -80,6 +80,7 @@ const performSearch = async (searchValue, type) => {
 const likeSearch = async () => {
   const likes = JSON.parse(localStorage.getItem("likes")) || [];
 
+  // Vérifie si aucun favori n'est trouvé
   if (likes.length === 0) {
     searchView.displayNoResultsMessage("Aucun favori trouvé.");
     return;
@@ -105,6 +106,7 @@ const likeSearch = async () => {
       )
     ).filter(Boolean); // Supprime les résultats `null`
 
+    // Affiche un message si aucun favori n'est trouvé
     if (allResults.length === 0) {
       searchView.displayNoResultsMessage("Aucun favori trouvé.");
     } else {

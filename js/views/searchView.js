@@ -5,12 +5,15 @@ import { truncateText } from "../functions/str.js";
 import { defaultIcon } from "../utils/icons.js";
 
 export const searchView = {
+  // Éléments pour afficher un message en cas de résultats non trouvés
   noResults: document.getElementById("noResults"),
   noResultsText: document.getElementById("noResultsText"),
   noResultsSuggest: document.getElementById("noResultsSuggest"),
 
+  // Élément pour afficher un message spécifique aux favoris non trouvés
   noResultsMessageFavorite: document.getElementById("noResultsMessageFavorite"),
 
+  // Conteneurs pour les résultats et les ingrédients
   results: document.getElementById("results"),
   ingredient: document.getElementById("ingredient"),
   ingredientName: document.getElementById("ingredientName"),
@@ -18,8 +21,10 @@ export const searchView = {
   ingredientDescription: document.getElementById("ingredientDescription"),
   ingredients: document.getElementById("ingredients"),
 
+  // Conteneur pour les recettes
   recipesContainer: document.getElementById("recipes"),
 
+  // Affiche les détails d'un ingrédient
   displayIngredient: (ingredient) => {
     searchView.ingredient.style.display = "flex";
     searchView.ingredientDescription.innerText = ingredient.getDescription();
@@ -27,6 +32,7 @@ export const searchView = {
     searchView.ingredientImage.src = ingredient.getMedium();
   },
 
+  // Affiche une liste d'ingrédients
   displayIngredients: (ingredients) => {
     if (!ingredients || ingredients.length === 0) {
       searchView.ingredients.style.display = "none";
@@ -47,6 +53,7 @@ export const searchView = {
       .join("");
   },
 
+  // Affiche des suggestions en cas de résultats non trouvés
   displayNoResultsSuggestions: (suggestions, searchValue) => {
     searchView.noResults.style.display = "block";
     searchView.noResultsText.innerText = `"${searchValue}"`;
@@ -60,6 +67,7 @@ export const searchView = {
       .join(", ");
   },
 
+  // Affiche les résultats de recherche
   displaySearchResults: (results) => {
     if (!results || results.length === 0) {
       searchView.results.innerHTML = "";
@@ -94,6 +102,7 @@ export const searchView = {
       .join("");
   },
 
+  // Affiche un message en cas d'absence de favoris
   displayNoResultsMessage: () => {
     searchView.noResultsMessageFavorite.style.display = "block";
     searchView.noResultsMessageFavorite.innerHTML = `Aucun favori trouvé...`;
