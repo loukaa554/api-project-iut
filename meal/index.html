@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body class="inner">
-    <nav id="nav">
+    <nav class="nav">
       <div>
         <h3>
           <a href="/">Reciply</a>
@@ -28,7 +28,7 @@
           <li><a href="github.com">Documentation</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
-        <div id="iconResp" class="icon-ctn">
+        <div class="iconResp icon-ctn">
           <svg
             class="icon-resp"
             stroke="currentColor"
@@ -47,7 +47,7 @@
           </svg>
         </div>
       </div>
-      <ul class="list-resp" id="list-resp">
+      <ul class="list-resp">
         <li><a href="github.com">Github</a></li>
         <li><a href="github.com">Documentation</a></li>
         <li><a href="/contact">Contact</a></li>
@@ -55,7 +55,7 @@
     </nav>
     <div class="bar">
       <div class="left">
-        <div class="btn-back btn" id="btnBack">
+        <div class="btn-back btn">
           <svg
             stroke="currentColor"
             fill="none"
@@ -88,7 +88,7 @@
             ></path>
           </svg>
         </a>
-        <div class="btn-like btn" id="btnLike">
+        <div class="btn-like btn">
           <svg
             stroke="currentColor"
             fill="none"
@@ -107,29 +107,36 @@
         </div>
       </div>
     </div>
-    <img id="recipeImage" src="null" alt="" />
-    <section id="middle">
-      <div id="resume">
-        <h2 id="recipeTitle">Titre de la recette</h2>
-        <p id="recipeDescription">Aucune description pour cette recette...</p>
-      </div>
-      <div id="categories">
-        <h2>Categories</h2>
-        <ul id="categoriesList"></ul>
-      </div>
-    </section>
-    <section id="bottom">
-      <div id="ingredients">
-        <h2>Ingredients</h2>
-        <ul id="ingredientsList"></ul>
-      </div>
-      <div id="steps">
-        <h2>Steps</h2>
-        <ol id="stepsList"></ol>
-      </div>
+    <img class="recipeImage" src="null" alt="" />
+
+    <section class="wrapper">
+      <section class="middle">
+        <div class="resume">
+          <h2 class="recipeTitle">Titre de la recette</h2>
+          <p class="recipeDescription">
+            Aucune description pour cette recette...
+          </p>
+        </div>
+        <div class="categories">
+          <h2>Categories</h2>
+          <ul class="categoriesList"></ul>
+        </div>
+      </section>
+      <section class="bottom">
+        <div class="ingredients">
+          <h2>Ingredients</h2>
+          <ul class="ingredientsList"></ul>
+        </div>
+        <div class="steps">
+          <h2>Steps</h2>
+          <ol class="stepsList"></ol>
+        </div>
+      </section>
     </section>
     <footer>
-      <p>&copy; <span id="footerDate"></span> Reciply. Tous droits réservés.</p>
+      <p>
+        &copy; <span class="footerDate"></span> Reciply. Tous droits réservés.
+      </p>
     </footer>
     <script type="module" src="../js/controllers/mealController.js"></script>
     <script type="module" src="../js/controllers/globalController.js"></script>
