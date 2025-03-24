@@ -1,3 +1,4 @@
+import { getBaseUrl } from "../functions/url.js";
 import { fetchMeals, fetchRandomMeal } from "../models/modelApi.js";
 import { view } from "../views/globalView.js";
 import { areas, categories, ingredients } from "./init.js";
@@ -97,6 +98,8 @@ const toggleDarkMode = () => {
 
 // Configuration des événements UI
 const setupEventListeners = () => {
+  console.log(getBaseUrl());
+
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get("type");
 
