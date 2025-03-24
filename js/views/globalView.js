@@ -8,6 +8,7 @@ import { getCatString } from "../functions/catString.js";
 
 export const view = {
   body: document.body,
+  base: document.querySelector("base"),
 
   // Référence à l'élément de nav.
   nav: document.getElementById("nav"),
@@ -37,7 +38,7 @@ export const view = {
   displaySuggestions(searchValue, allResults = []) {
     // Ajoute la première suggestion "Rechercher ..."
     let suggestionsHTML = `
-    <a href="search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
+    <a href="/search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
       <div class="left">
         ${defaultIcon}
         <span id="firstSuggestion">Rechercher "${searchValue}"</span>
@@ -53,12 +54,12 @@ export const view = {
           (item) => `
         <a href="${
           item.type === "meal"
-            ? `meal/?m=${item.name}`
-            : `search/?q=${item.name}&type=${item.type}`
+            ? `/meal/?m=${item.name}`
+            : `/search/?q=${item.name}&type=${item.type}`
         }" class="item item-suggest" data-url="${
             item.type === "meal"
-              ? `meal/?m=${item.name}`
-              : `search/?q=${item.name}&type=${item.type}`
+              ? `/meal/?m=${item.name}`
+              : `/search/?q=${item.name}&type=${item.type}`
           }">
           <div class="left">
             ${
