@@ -1,16 +1,15 @@
-export const DOMAIN = "https://www.themealdb.com/";
+export const DOMAIN = "https://www.themealdb.com/api/json/v1/1/";
 
 export const API = {
-  ingredients: `${DOMAIN}api/json/v1/1/list.php?i=list`,
-  categories: `${DOMAIN}api/json/v1/1/categories.php`,
-  areas: `${DOMAIN}api/json/v1/1/list.php?a=list`,
-  searchMeal: (query) => `${DOMAIN}api/json/v1/1/search.php?s=${query}`,
-  randomMeal: `${DOMAIN}api/json/v1/1/random.php`,
+  ingredients: `${DOMAIN}list.php?i=list`,
+  categories: `${DOMAIN}categories.php`,
+  areas: `${DOMAIN}list.php?a=list`,
+  searchMeal: (query) => `${DOMAIN}search.php?s=${query}`,
+  randomMeal: `${DOMAIN}random.php`,
   filter: {
-    ingredient: (ingredient) =>
-      `${DOMAIN}api/json/v1/1/filter.php?i=${ingredient}`,
-    category: (category) => `${DOMAIN}api/json/v1/1/filter.php?c=${category}`,
-    area: (area) => `${DOMAIN}api/json/v1/1/filter.php?a=${area}`,
+    ingredient: (ingredient) => `${DOMAIN}filter.php?i=${ingredient}`,
+    category: (category) => `${DOMAIN}filter.php?c=${category}`,
+    area: (area) => `${DOMAIN}filter.php?a=${area}`,
   },
 };
 
