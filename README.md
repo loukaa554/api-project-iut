@@ -326,16 +326,3 @@ Ce projet est sous la licence **MIT**.
 
 - Vous êtes libre d'utiliser, de modifier et de distribuer ce code, sous réserve des conditions de la licence MIT.
 - Ce projet est fourni **"tel quel"**, sans aucune garantie d'aucune sorte, expresse ou implicite, y compris, mais sans s'y limiter, les garanties implicites de qualité marchande ou d'adéquation à un usage particulier.
-
-### Comment inclure la licence MIT
-
-Vous pouvez inclure la licence MIT dans le fichier `LICENSE` en ajoutant le texte suivant :
-
-```yaml
-MIT License
-Copyright (c) 2025 loukaaa.com & Ewan René-Daguet
-
-Permission est accordée, sans condition, à toute personne obtenant une copie de ce logiciel et des fichiers associés (le "Logiciel"), de traiter le Logiciel, y compris sans limitation les droits de l'utiliser, de le copier, de le modifier, de le fusionner, de le publier, de distribuer, de sous-licencier et/ou de vendre des copies du Logiciel, et de permettre à d'autres personnes à qui le Logiciel est fourni de le faire, sous réserve des conditions suivantes : Le texte de la licence ci-dessus et le(s) avis de droit d'auteur ci-dessous doivent être inclus dans toutes les copies ou parties substantielles du Logiciel.
-
-LE LOGICIEL EST FOURNI "EN L'ÉTAT", SANS AUCUNE GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE, Y COMPRIS MAIS SANS S'Y LIMITER LES GARANTIES IMPLICITES DE QUALITÉ MARCHANDE ET D'ADÉQUATION À UN USAGE PARTICULIER. EN AUCUN CAS L'AUTEUR OU LES TITULAIRES DU DROIT D'AUTEUR NE SERONT RESPONSABLES POUR TOUT DOMMAGE OU AUTRE RESPONSABILITÉ, QUELLE QU'ELLE SOIT, DANS TOUTE ACTION DANS LE CADRE DU LOGICIEL OU DE L'UTILISATION DU LOGICIEL.
-```
