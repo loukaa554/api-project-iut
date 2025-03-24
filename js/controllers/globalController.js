@@ -72,7 +72,9 @@ const handleKeyboardNavigation = (e) => {
   } else if (e.key === "Enter") {
     e.preventDefault();
     if (selectedIndex === -1) {
-      window.location.href = `/search/?q=${view.search.value}&type=all`;
+      window.location.href = `${getBaseUrl()}/search/?q=${
+        view.search.value
+      }&type=all`;
     } else if (items[selectedIndex]?.dataset.url) {
       window.location.href = items[selectedIndex].dataset.url;
     }
@@ -87,7 +89,7 @@ const handleKeyboardNavigation = (e) => {
 const randomRecipe = async () => {
   const mealName = await fetchRandomMeal();
   if (mealName) {
-    window.location.href = `/meal/?m=${mealName}`;
+    window.location.href = `${getBaseUrl()}/meal/?m=${mealName}`;
   }
 };
 
