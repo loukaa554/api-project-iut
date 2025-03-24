@@ -2,6 +2,7 @@
  * Module `view` pour gérer l'affichage des recettes dans l'interface utilisateur.
  */
 import { truncateText } from "../functions/str.js";
+import { getBaseUrl } from "../functions/url.js";
 import { defaultIcon } from "../utils/icons.js";
 
 export const searchView = {
@@ -77,7 +78,9 @@ export const searchView = {
     searchView.results.innerHTML = results
       .map(
         (item) => `
-        <a href="/meal/?m=${encodeURIComponent(item.name)}" class="item">
+        <a href="${getBaseUrl()}/meal/?m=${encodeURIComponent(
+          item.name
+        )}" class="item">
           <div class="left">
             <div>
               <h3>${item.name}</h3>

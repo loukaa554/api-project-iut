@@ -5,10 +5,10 @@
 import { defaultIcon, menuIcon, closeIcon } from "../utils/icons.js";
 import { getFlagEmoji } from "../functions/flags.js";
 import { getCatString } from "../functions/catString.js";
+import { getBaseUrl } from "../functions/url.js";
 
 export const view = {
   body: document.body,
-  base: document.querySelector("base"),
 
   // Référence à l'élément de nav.
   nav: document.getElementById("nav"),
@@ -38,7 +38,7 @@ export const view = {
   displaySuggestions(searchValue, allResults = []) {
     // Ajoute la première suggestion "Rechercher ..."
     let suggestionsHTML = `
-    <a href="/search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
+    <a href="${getBaseUrl()}/search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
       <div class="left">
         ${defaultIcon}
         <span id="firstSuggestion">Rechercher "${searchValue}"</span>
@@ -52,11 +52,11 @@ export const view = {
       suggestionsHTML += allResults
         .map(
           (item) => `
-        <a href="${
-          item.type === "meal"
-            ? `/meal/?m=${item.name}`
-            : `/search/?q=${item.name}&type=${item.type}`
-        }" class="item item-suggest" data-url="${
+        <a href="${getBaseUrl()}${
+            item.type === "meal"
+              ? `/meal/?m=${item.name}`
+              : `/search/?q=${item.name}&type=${item.type}`
+          }" class="item item-suggest" data-url="${getBaseUrl()}${
             item.type === "meal"
               ? `/meal/?m=${item.name}`
               : `/search/?q=${item.name}&type=${item.type}`
