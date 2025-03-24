@@ -97,10 +97,6 @@ const toggleDarkMode = () => {
 
 // Configuration des événements UI
 const setupEventListeners = () => {
-  if (window.location.origin.includes("github.io")) {
-    view.base.setAttribute("href", "/api-project-iut/");
-  }
-
   const urlParams = new URLSearchParams(window.location.search);
   const type = urlParams.get("type");
 
