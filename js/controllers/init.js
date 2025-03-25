@@ -1,6 +1,11 @@
 import { IngredientModel } from "../models/modelIngredient.js";
 import { modelCategorie } from "../models/modelCategorie.js";
 import { modelArea } from "../models/modelArea.js";
+import {
+  fetchIngredients,
+  fetchCategories,
+  fetchAreas,
+} from "../models/modelApi.js";
 
 let ingredients = [];
 let categories = [];
@@ -8,21 +13,15 @@ let areas = [];
 
 const init = async () => {
   try {
-    // Charger les ingrédients
-    const ingredientsResponse = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
-    );
-    const ingredientsData = await ingredientsResponse.json();
-    ingredients = ingredientsData.meals.map(
+    // Charger les ingrédients via modelApi
+    const ingredientsData = await fetchIngredients();
+    ingredients = ingredientsData.map(
       (ing) => new IngredientModel(ing.strIngredient, ing.strDescription)
     );
 
-    // Charger les catégories
-    const categoriesResponse = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php"
-    );
-    const categoriesData = await categoriesResponse.json();
-    categories = categoriesData.categories.map(
+    // Charger les catégories via modelApi
+    const categoriesData = await fetchCategories();
+    categories = categoriesData.map(
       (cat) =>
         new modelCategorie(
           cat.strCategory,
@@ -31,12 +30,9 @@ const init = async () => {
         )
     );
 
-    // Charger les pays
-    const areasResponse = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
-    );
-    const areasData = await areasResponse.json();
-    areas = areasData.meals.map((area) => new modelArea(area.strArea));
+    // Charger les pays via modelApi
+    const areasData = await fetchAreas();
+    areas = areasData.map((area) => new modelArea(area.strArea));
   } catch (error) {
     console.error("Erreur lors du chargement des données", error);
   }

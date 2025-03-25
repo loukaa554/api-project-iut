@@ -57,3 +57,20 @@ export const fetchRandomMeal = async () => {
   const meals = await fetchData(API.randomMeal);
   return meals.length ? meals[0].strMeal : null;
 };
+
+// 🔥 Ajout des fonctions pour `init.js` 🔥
+
+// Récupérer la liste des ingrédients
+export const fetchIngredients = async () => {
+  return fetchData(API.ingredients);
+};
+
+// Récupérer la liste des catégories
+export const fetchCategories = async () => {
+  return fetchData(API.categories);
+};
+
+// Récupérer la liste des zones (pays)
+export const fetchAreas = async () => {
+  return fetchData(API.areas);
+};
