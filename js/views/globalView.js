@@ -36,9 +36,11 @@ export const view = {
   },
 
   displaySuggestions(searchValue, allResults = []) {
+    const url = `${getBaseUrl()}/search/?q=${searchValue}&type=all`;
+
     // Ajoute la première suggestion "Rechercher ..."
     let suggestionsHTML = `
-    <a href="${getBaseUrl()}/search/?q=${searchValue}&type=all" class="item" data-url="/search/?q=${searchValue}&type=all">
+    <a href="${url}" class="item" data-url="${url}">
       <div class="left">
         ${defaultIcon}
         <span id="firstSuggestion">Rechercher "${searchValue}"</span>
