@@ -45,7 +45,7 @@ export const searchView = {
       .slice(0, 20)
       .map(
         (ing) => `
-        <a class="item" href="/search/?q=${ing.getName()}&type=ingredient">
+        <a class="item" href="${getBaseUrl()}/search/?q=${ing.getName()}&type=ingredient">
           <img src="${ing.getSmall()}" alt="${ing.getName()}" />
           <span>${ing.getName()}</span>
         </a>
@@ -64,7 +64,7 @@ export const searchView = {
     }
 
     searchView.noResultsSuggest.innerHTML = suggestions
-      .map((s) => `<a href="/search/?q=${s}&type=all">${s}</a>`)
+      .map((s) => `<a href="${getBaseUrl()}/search/?q=${s}&type=all">${s}</a>`)
       .join(", ");
   },
 
