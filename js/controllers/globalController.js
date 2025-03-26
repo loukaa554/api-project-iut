@@ -72,9 +72,10 @@ const handleKeyboardNavigation = (e) => {
   } else if (e.key === "Enter") {
     e.preventDefault();
     if (selectedIndex === -1) {
-      window.location.href = `${getBaseUrl()}/search/?q=${
-        view.search.value
-      }&type=all`;
+      console.log(getBaseUrl());
+      // window.location.href = `${getBaseUrl()}/search/?q=${
+      //   view.search.value
+      // }&type=all`;
     } else if (items[selectedIndex]?.dataset.url) {
       window.location.href = items[selectedIndex].dataset.url;
     }
