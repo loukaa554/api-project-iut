@@ -72,7 +72,7 @@ const handleKeyboardNavigation = (e) => {
   } else if (e.key === "Enter") {
     e.preventDefault();
     if (selectedIndex === -1) {
-      console.log(getBaseUrl());
+      console.log(`${getBaseUrl()}/search/?q=${view.search.value}&type=all`);
       // window.location.href = `${getBaseUrl()}/search/?q=${
       //   view.search.value
       // }&type=all`;
