@@ -1,3 +1,8 @@
+/**
+ * Retourne l'émoji du drapeau correspondant à un pays donné.
+ * @param {string} country - Nom du pays en anglais (ex: "french", "italian").
+ * @returns {string} Emoji du drapeau ou un message d'erreur si non trouvé.
+ */
 export const getFlagEmoji = (country) => {
   const countryCodes = {
     american: "US",

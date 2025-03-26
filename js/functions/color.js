@@ -1,6 +1,6 @@
 /**
- * Applies a gradient color from #A7E9AF (Vert menthe) to #64C9CF (Bleu lagon)
- * to all elements with the class `.step .circle`.
+ * Applique un dégradé de couleur de #A7E9AF (Vert menthe) à #64C9CF (Bleu lagon)
+ * sur tous les éléments ayant la classe `.step .circle`.
  */
 export const applyGradientToSteps = () => {
   const steps = document.querySelectorAll(".step .circle");
@@ -8,7 +8,7 @@ export const applyGradientToSteps = () => {
 
   if (totalSteps === 0) return;
 
-  // Convert hex color to RGB
+  // Convertit une couleur hexadécimale en RGB
   const hexToRgb = (hex) => {
     const bigint = parseInt(hex.slice(1), 16);
     return {
@@ -22,11 +22,11 @@ export const applyGradientToSteps = () => {
   const endColor = hexToRgb("#64C9CF");
 
   steps.forEach((step, index) => {
-    const ratio = index / (totalSteps - 1); // Calculate the ratio (0 for the first, 1 for the last)
+    const ratio = index / (totalSteps - 1); // Calcule le ratio (0 pour le premier, 1 pour le dernier)
     const r = Math.round(startColor.r + ratio * (endColor.r - startColor.r));
     const g = Math.round(startColor.g + ratio * (endColor.g - startColor.g));
     const b = Math.round(startColor.b + ratio * (endColor.b - startColor.b));
-    const color = `rgb(${r}, ${g}, ${b})`; // Generate the RGB color
-    step.style.backgroundColor = color; // Apply the color to the element
+    const color = `rgb(${r}, ${g}, ${b})`; // Génère la couleur RGB
+    step.style.backgroundColor = color; // Applique la couleur à l'élément
   });
 };

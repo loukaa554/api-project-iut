@@ -1,14 +1,25 @@
+/**
+ * Importation des modules et services nécessaires pour le contrôleur global.
+ */
 import { getBaseUrl } from "../functions/url.js";
 import { fetchMeals, fetchRandomMeal } from "../models/modelApi.js";
 import { view } from "../views/globalView.js";
 import { areas, categories, ingredients } from "../services/dataService.js";
 
+/**
+ * Classe GlobalController : Gère la logique de l'application,
+ * y compris la recherche, la navigation au clavier et le mode sombre.
+ */
 export class GlobalController {
   constructor() {
-    this.selectedIndex = -1;
-    this.setupEventListeners();
+    this.selectedIndex = -1; // Index pour la navigation dans la liste de suggestions
+    this.setupEventListeners(); // Initialisation des écouteurs d'événements
   }
 
+  /**
+   * Gère l'entrée utilisateur dans la barre de recherche et affiche les suggestions.
+   * @param {Event} e - Événement d'entrée utilisateur.
+   */
   async handleSearchInput(e) {
     const searchValue = e.target.value.toLowerCase().trim();
     if (!searchValue) {
@@ -17,6 +28,7 @@ export class GlobalController {
     }
     view.suggestions.classList.add("active");
 
+    // Récupération et structuration des données disponibles pour la recherche
     let allResults = [
       ...ingredients.map((i) => ({
         name: i.getName(),
@@ -44,6 +56,7 @@ export class GlobalController {
       console.error("Erreur lors de la recherche des recettes :", error);
     }
 
+    // Filtrage et tri des résultats
     allResults = allResults.filter((item) =>
       item.name.toLowerCase().includes(searchValue)
     );
@@ -54,11 +67,16 @@ export class GlobalController {
       return aStartsWith - bStartsWith;
     });
 
+    // Limite à 6 suggestions
     allResults = allResults.slice(0, 6);
     view.displaySuggestions(searchValue, allResults);
     this.selectedIndex = -1;
   }
 
+  /**
+   * Gère la navigation au clavier dans les suggestions de recherche.
+   * @param {KeyboardEvent} e - Événement clavier.
+   */
   handleKeyboardNavigation(e) {
     const items = document.querySelectorAll(".item");
 
@@ -84,6 +102,9 @@ export class GlobalController {
     );
   }
 
+  /**
+   * Redirige vers une recette aléatoire.
+   */
   async randomRecipe() {
     const mealName = await fetchRandomMeal();
     if (mealName) {
@@ -91,12 +112,24 @@ export class GlobalController {
     }
   }
 
+  /**
+   * Active/désactive le mode sombre et sauvegarde la préférence dans le stockage local.
+   */
   toggleDarkMode() {
     view.body.classList.toggle("dark");
     localStorage.setItem("darkMode", view.body.classList.contains("dark"));
   }
 
+  /**
+   * Initialise les écouteurs d'événements pour gérer la recherche, la navigation et les interactions UI.
+   */
   setupEventListeners() {
+    // Activation du mode sombre si stocké dans le localStorage
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    if (darkMode) {
+      view.body.classList.add("dark");
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get("type");
 
@@ -123,12 +156,8 @@ export class GlobalController {
     if (view.searchDarkBtn) {
       view.searchDarkBtn.addEventListener("click", () => this.toggleDarkMode());
     }
-    const darkMode = localStorage.getItem("darkMode") === "true";
-    if (darkMode) {
-      view.body.classList
-        ? view.body.classList.add("dark")
-        : view.body.classList.remove("dark");
-    }
+
+    // Affichage de la date actuelle dans l'interface
     view.displayDate();
   }
 }

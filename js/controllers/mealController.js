@@ -1,3 +1,6 @@
+/**
+ * Importation des modules et services nécessaires pour le contrôleur des repas.
+ */
 import { applyGradientToSteps } from "../functions/color.js";
 import { capitalizeWords, stringToArray } from "../functions/str.js";
 import { mealView } from "../views/mealView.js";
@@ -5,12 +8,19 @@ import { view } from "../views/globalView.js";
 import { fetchMealsByType } from "../models/modelApi.js";
 import { ingredients } from "../services/dataService.js";
 
+/**
+ * Classe MealController : Gère l'affichage des détails d'un repas et les interactions utilisateur.
+ */
 export class MealController {
   constructor() {
     this.setupEventListeners();
     this.loadRecipeOnPageLoad();
   }
 
+  /**
+   * Vérifie si les ingrédients sont chargés avant de poursuivre.
+   * @returns {Promise<void>} - Une promesse résolue une fois les ingrédients chargés.
+   */
   async ensureIngredientsLoaded() {
     return new Promise((resolve) => {
       const checkLoaded = () => {
@@ -24,6 +34,10 @@ export class MealController {
     });
   }
 
+  /**
+   * Récupère les détails d'une recette à partir de son nom et met à jour l'affichage.
+   * @param {string} mealName - Le nom du repas à récupérer.
+   */
   async getRecipeDetails(mealName) {
     try {
       const meals = await fetchMealsByType(mealName, "meal");
@@ -78,6 +92,10 @@ export class MealController {
     }
   }
 
+  /**
+   * Vérifie si un repas est aimé en fonction des données stockées dans localStorage.
+   * @returns {boolean} - True si le repas est dans la liste des favoris, sinon false.
+   */
   getLike() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchValue = urlParams.get("m");
@@ -87,6 +105,9 @@ export class MealController {
     }
   }
 
+  /**
+   * Ajoute ou supprime un repas des favoris.
+   */
   addLike() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchValue = urlParams.get("m");
@@ -103,6 +124,9 @@ export class MealController {
     localStorage.setItem("likes", JSON.stringify(likes));
   }
 
+  /**
+   * Ajoute les écouteurs d'événements pour la navigation et l'ajout aux favoris.
+   */
   setupEventListeners() {
     mealView.btnBack.addEventListener("click", () => {
       window.history.back();
@@ -110,6 +134,9 @@ export class MealController {
     mealView.btnLike.addEventListener("click", () => this.addLike());
   }
 
+  /**
+   * Charge automatiquement une recette si un paramètre est présent dans l'URL.
+   */
   loadRecipeOnPageLoad() {
     window.onload = async () => {
       const urlParams = new URLSearchParams(window.location.search);

@@ -4,11 +4,17 @@ import { searchView } from "../views/searchView.js";
 import { view } from "../views/globalView.js";
 import { ingredients } from "../services/dataService.js";
 
+/**
+ * Contrôleur pour gérer la recherche des recettes et des ingrédients.
+ */
 export class SearchController {
   constructor() {
     this.handleSearch();
   }
 
+  /**
+   * Gère l'initialisation de la recherche en fonction des paramètres de l'URL.
+   */
   async handleSearch() {
     const urlParams = new URLSearchParams(window.location.search);
     const searchValue = urlParams.get("q")?.toLowerCase().trim();
@@ -24,6 +30,11 @@ export class SearchController {
     }
   }
 
+  /**
+   * Effectue une recherche de recettes ou d'ingrédients selon le type spécifié.
+   * @param {string} searchValue - Terme de recherche saisi par l'utilisateur.
+   * @param {string} type - Type de recherche ("meal", "ingredient", "all").
+   */
   async performSearch(searchValue, type) {
     let allResults = [];
     try {
@@ -56,9 +67,15 @@ export class SearchController {
     // Gestion des ingrédients
     let filteredIngredients = [];
     if (type === "all") {
+      console.log(ingredients);
       filteredIngredients = ingredients.filter((ing) =>
         ing.getName().toLowerCase().includes(searchValue)
       );
+      console.log(filteredIngredients);
+      if (filteredIngredients.length > 0) {
+        searchView.ingredients.style.display = "flex";
+        searchView.displayIngredients(filteredIngredients);
+      }
     }
 
     if (type === "ingredient") {
@@ -66,11 +83,6 @@ export class SearchController {
         (i) => i.getName().toLowerCase() === searchValue
       );
       searchView.displayIngredient(foundIngredient);
-    }
-
-    if (filteredIngredients.length > 0) {
-      searchView.ingredients.style.display = "flex";
-      searchView.displayIngredients(filteredIngredients);
     }
 
     // Affichage des résultats ou suggestions
@@ -82,6 +94,9 @@ export class SearchController {
     }
   }
 
+  /**
+   * Recherche et affiche les favoris de l'utilisateur.
+   */
   async likeSearch() {
     const likes = JSON.parse(localStorage.getItem("likes")) || [];
 
