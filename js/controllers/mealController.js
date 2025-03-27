@@ -74,9 +74,9 @@ export class MealController {
 
       const instructions = meal.strInstructions
         ? meal.strInstructions
-            .split(/\r\n|\n|\.\s|\d+\.\s?|step\s\d+\s?:?/i)
-            .map((step) => step.trim())
-            .filter((step) => step !== "" && step !== step.toUpperCase())
+            .split(/\r\n|\n|\.\s|\d+\.\s?|step\s\d+\s?:?/i) // Regex pour diviser les instructions
+            .map((step) => step.trim()) // Supprime les espaces inutiles
+            .filter((step) => step !== "" && step !== step.toUpperCase()) // Filtre les étapes vides et celles en majuscules
         : [];
 
       mealView.displayImage(meal.strMealThumb);

@@ -24,9 +24,9 @@ export class GlobalController {
     const searchValue = e.target.value.toLowerCase().trim();
     if (!searchValue) {
       view.suggestions.classList.remove("active");
-      return;
+    } else {
+      view.suggestions.classList.add("active");
     }
-    view.suggestions.classList.add("active");
 
     // Récupération et structuration des données disponibles pour la recherche
     let allResults = [
@@ -61,6 +61,7 @@ export class GlobalController {
       item.name.toLowerCase().includes(searchValue)
     );
 
+    // Tri des résultats : les éléments qui commencent par la valeur de recherche en premier
     allResults.sort((a, b) => {
       const aStartsWith = a.name.toLowerCase().startsWith(searchValue) ? -1 : 1;
       const bStartsWith = b.name.toLowerCase().startsWith(searchValue) ? -1 : 1;

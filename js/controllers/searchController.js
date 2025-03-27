@@ -54,7 +54,7 @@ export class SearchController {
     }
 
     // Tri des résultats prioritaires
-    if (type === "all" && type === "ingredient") {
+    if (type === "all" || type === "ingredient") {
       allResults.sort((a, b) =>
         a.name.startsWith(searchValue)
           ? -1
@@ -67,15 +67,14 @@ export class SearchController {
     // Gestion des ingrédients
     let filteredIngredients = [];
     if (type === "all") {
-      console.log(ingredients);
       filteredIngredients = ingredients.filter((ing) =>
         ing.getName().toLowerCase().includes(searchValue)
       );
-      console.log(filteredIngredients);
-      if (filteredIngredients.length > 0) {
-        searchView.ingredients.style.display = "flex";
-        searchView.displayIngredients(filteredIngredients);
-      }
+    }
+
+    if (filteredIngredients.length > 0) {
+      searchView.ingredients.style.display = "flex";
+      searchView.displayIngredients(filteredIngredients);
     }
 
     if (type === "ingredient") {
