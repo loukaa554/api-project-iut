@@ -53,6 +53,16 @@ export class SearchController {
       console.error("Erreur lors de la recherche :", error);
     }
 
+    // Charger les ingrédients de manière asynchrone
+    const ingredientsPromise = new Promise(async (resolve) => {
+      while (!ingredients || ingredients.length === 0) {
+        await new Promise((r) => setTimeout(r, 100));
+      }
+      resolve();
+    });
+
+    await ingredientsPromise;
+
     // Tri des résultats prioritaires
     if (type === "all" || type === "ingredient") {
       allResults.sort((a, b) =>
